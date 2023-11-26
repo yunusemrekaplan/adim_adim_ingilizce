@@ -1,0 +1,115 @@
+import 'package:flutter/material.dart';
+
+final lightTheme = ThemeData(
+  primaryColor: Colors.white,
+  //brightness: Brightness.light,
+  hintColor: Colors.black,
+  //accentIconTheme: IconThemeData(color: Colors.white),
+  dividerColor: Colors.white54,
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+    titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+    bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+  ),
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
+    background: const Color(0xFFE5E5E5),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.grey,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+        side: const BorderSide(color: Colors.black),
+      ),
+    ),
+  ),
+);
+
+final darkTheme = ThemeData(
+  primaryColor: Colors.black,
+  //brightness: Brightness.dark,
+  hintColor: Colors.white,
+  //actionIconTheme: IconThemeData(color: Colors.black),
+  dividerColor: Colors.black12,
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+    titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+    bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+  ),
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
+    background: const Color(0xFF212121),
+  ),
+  buttonTheme: ButtonThemeData(
+    buttonColor: Colors.grey,
+    textTheme: ButtonTextTheme.primary,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(18.0),
+      side: const BorderSide(color: Colors.white),
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.grey,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+        side: const BorderSide(color: Colors.white),
+      ),
+    ),
+  ),
+);
+
+
+
+/*
+ThemeData.dark().copyWith(
+        colorScheme: const ColorScheme.dark(
+          primary: Colors.deepPurple,
+          onPrimary: Colors.red,
+          secondary: Colors.orange,
+          onSecondary: Colors.blueGrey,
+          background: Colors.yellow,
+          onBackground: Colors.amber,
+          surface: Colors.blue,
+          onSurface: Colors.white,
+          error: Colors.red,
+          onError: Colors.red,
+          brightness: Brightness.dark,
+        ),
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+            fontSize: 72.0,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: TextStyle(
+            fontSize: 36.0,
+            fontStyle: FontStyle.italic,
+          ),
+          displaySmall: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 18.0,
+            fontStyle: FontStyle.italic,
+          ),
+          headlineSmall: TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.bold,
+          ),
+          titleLarge: TextStyle(
+            fontSize: 20.0,
+            fontStyle: FontStyle.italic,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: 14.0,
+            fontFamily: 'Hind',
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 12.0,
+            fontFamily: 'Hind',
+          ),
+        ),
+      )
+*/

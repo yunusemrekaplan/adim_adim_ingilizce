@@ -1,39 +1,31 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
-  const MyBottomNavigationBar({super.key, required this.currentIndex});
+  const MyBottomNavigationBar({
+    super.key,
+    required this.activeIndex,
+  });
 
-  final int currentIndex;
+  final int activeIndex;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
+    return AnimatedBottomNavigationBar(
+      icons: const <IconData>[Icons.home, Icons.person],
+      activeIndex: activeIndex,
+      gapLocation: GapLocation.center,
+      //notchSmoothness: NotchSmoothness.verySmoothEdge,
+      leftCornerRadius: 32,
+      rightCornerRadius: 32,
       onTap: (index) {
         if (index == 0) {
-          Get.offNamed('/dash');
+          Get.offNamed('/home');
         } else if (index == 1) {
-          Navigator.pushNamed(context, '/search');
-        } else if (index == 2) {
           Get.offNamed('/profile');
         }
       },
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined, color: Colors.deepPurple),
-          activeIcon: Icon(Icons.home, color: Colors.deepPurple),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search, color: Colors.deepPurple),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person, color: Colors.deepPurple),
-          label: 'Profile',
-        ),
-      ],
     );
   }
 }

@@ -1,12 +1,14 @@
-import 'package:adim_adim_turkce/view/widget/my_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../widget/my_bottom_navigation_bar.dart';
+import '/view/theme/library.dart' as themes;
 
 import 'controller.dart';
 
 class Screen extends StatelessWidget {
   Screen({super.key});
-  final _controller = Get.put(Controller());
+  final _controller = Get.put(ControllerHome());
+  final _themeController = Get.find<themes.ControllerTheme>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,13 @@ class Screen extends StatelessWidget {
   Scaffold buildScaffold(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dash', style: TextStyle(color: Colors.white)),
+        title: const Text('Home'),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
       ),
-      backgroundColor: Colors.white24,
+      //backgroundColor: Colors.white24,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
@@ -61,7 +62,15 @@ class Screen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const MyBottomNavigationBar(currentIndex: 0),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _themeController.changeTheme();
+        },
+        //backgroundColor: Colors.deepPurple,
+        child: Obx(() => Icon(_themeController.icon.value)),
+      ),
+      bottomNavigationBar: const MyBottomNavigationBar(activeIndex: 0),
     );
   }
 }
