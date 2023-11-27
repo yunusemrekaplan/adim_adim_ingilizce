@@ -24,7 +24,7 @@ class Screen extends StatelessWidget {
           _themeController.changeTheme();
         },
         //backgroundColor: Colors.deepPurple,
-        child: Obx(() => Icon(_themeController.icon.value)),
+        child: Obx(() => _themeController.icon.value),
       ),
       bottomNavigationBar: const MyBottomNavigationBar(activeIndex: 1),
     );

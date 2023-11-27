@@ -19,6 +19,7 @@ class Screen extends StatelessWidget {
   }
 
   Scaffold buildScaffold(BuildContext context) {
+    //Category category =
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -35,27 +36,7 @@ class Screen extends StatelessWidget {
                 width: 170,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Listening Category'),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: SizedBox(
-                width: 170,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Reading Category'),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: SizedBox(
-                width: 170,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Writing Category'),
+                  child: const Text('Word Practice'),
                 ),
               ),
             ),
@@ -68,7 +49,7 @@ class Screen extends StatelessWidget {
           _themeController.changeTheme();
         },
         //backgroundColor: Colors.deepPurple,
-        child: Obx(() => Icon(_themeController.icon.value)),
+        child: Obx(() => _themeController.icon.value),
       ),
       bottomNavigationBar: const MyBottomNavigationBar(activeIndex: 0),
     );

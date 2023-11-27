@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'view/home/library.dart' as home;
 import 'view/profile/library.dart' as profile;
 import 'view/theme/library.dart' as themes;
+import 'view/categories/library.dart' as categories;
 
 void main() {
   runApp(MyApp());
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: themes.lightTheme,
       darkTheme: themes.darkTheme,
-      initialRoute: '/home',
+      initialRoute: '/categories',
       getPages: [
-        GetPage(name: '/home', page: () => home.Screen()),
+        GetPage(name: '/categories', page: () => categories.Screen()),
         GetPage(name: '/profile', page: () => profile.Screen()),
+        //GetPage(name: '/', page: page)
       ],
     );
   }

@@ -4,17 +4,17 @@ import 'package:get/get.dart';
 import 'themes.dart';
 
 class ControllerTheme extends GetxController {
-  Rx<IconData> icon = Icons.light_mode.obs;
+  Rx<Icon> icon = const Icon(Icons.light_mode, color: Colors.white).obs;
   bool isDark = false;
 
   void changeTheme() {
     if (isDark) {
       Get.changeTheme(lightTheme);
-      icon.value = Icons.light_mode;
+      icon.value = const Icon(Icons.light_mode, color: Colors.white);
       isDark = false;
     } else {
       Get.changeTheme(darkTheme);
-      icon.value = Icons.dark_mode;
+      icon.value = const Icon(Icons.dark_mode, color: Colors.black);
       isDark = true;
     }
   }
