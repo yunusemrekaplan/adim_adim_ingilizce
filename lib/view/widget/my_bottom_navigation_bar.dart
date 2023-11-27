@@ -21,7 +21,7 @@ class MyBottomNavigationBar extends StatelessWidget {
       rightCornerRadius: 32,
       onTap: (index) {
         if (index == 0) {
-          Get.offNamed('/home');
+          Get.offNamed('/categories');
         } else if (index == 1) {
           Get.offNamed('/profile');
         }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'view/home/library.dart' as home;
+//import 'view/home/library.dart' as home;
 import 'view/profile/library.dart' as profile;
 import 'view/theme/library.dart' as themes;
 import 'view/categories/library.dart' as categories;

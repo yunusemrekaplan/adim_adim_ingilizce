@@ -102,3 +102,49 @@ List<Question> weatherQuestions = <Question>[
     wrongAnswers: ['Bulutlu', 'Güneşli', 'Yağmurlu'],
   ),
 ];
+
+List<Question> foodQuestions = <Question>[
+  Question(
+    questionText: 'Bread',
+    answerText: 'Ekmek',
+    wrongAnswers: ['Peynir', 'Makarna', 'Pilav'],
+  ),
+  Question(
+    questionText: 'Cheese',
+    answerText: 'Peynir',
+    wrongAnswers: ['Ekmek', 'Makarna', 'Pilav'],
+  ),
+  Question(
+    questionText: 'Pasta',
+    answerText: 'Makarna',
+    wrongAnswers: ['Ekmek', 'Peynir', 'Pilav'],
+  ),
+  Question(
+    questionText: 'Rice',
+    answerText: 'Pilav',
+    wrongAnswers: ['Ekmek', 'Peynir', 'Makarna'],
+  ),
+];
+
+List<Question> fruitQuestions = <Question>[
+  Question(
+    questionText: 'Apple',
+    answerText: 'Elma',
+    wrongAnswers: ['Armut', 'Portakal', 'Muz'],
+  ),
+  Question(
+    questionText: 'Pear',
+    answerText: 'Armut',
+    wrongAnswers: ['Elma', 'Portakal', 'Muz'],
+  ),
+  Question(
+    questionText: 'Orange',
+    answerText: 'Portakal',
+    wrongAnswers: ['Elma', 'Armut', 'Muz'],
+  ),
+  Question(
+    questionText: 'Banana',
+    answerText: 'Muz',
+    wrongAnswers: ['Elma', 'Armut', 'Portakal'],
+  ),
+];

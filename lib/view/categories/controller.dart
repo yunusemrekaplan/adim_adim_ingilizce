@@ -27,8 +27,12 @@ class ControllerCategory extends GetxController {
     model.colorCategory,
     model.animalCategory,
     model.weatherCategory,
-    model.weatherCategory,
-    model.weatherCategory,
+    model.foodCategory,
+    model.fruitCategory,
+    model.colorCategory,
+    model.colorCategory,
+    model.colorCategory,
+    model.colorCategory,
   ];
 
   Future<void> init() async {
