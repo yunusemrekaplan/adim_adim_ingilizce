@@ -27,30 +27,35 @@ class Screen extends StatelessWidget {
         title: const Text('Categories'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: _controller.categories.length % 2 == 0
-            ? _controller.categories.length ~/ 2
-            : _controller.categories.length ~/ 2 + 1,
-        itemBuilder: itemBuilder,
-      ),
+      body: buildBody(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
         onPressed: _themeController.changeTheme,
-        child: Obx(() => _themeController.icon.value),
+        child: Obx(() => _themeController.modeIcon.value),
       ),
       bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 0),
     );
   }
 
+  ListView buildBody() {
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      itemCount: _controller.categories.length % 2 == 0
+          ? _controller.categories.length ~/ 2
+          : _controller.categories.length ~/ 2 + 1,
+      itemBuilder: itemBuilder,
+    );
+  }
+
   Row itemBuilder(BuildContext context, int index) {
-    int state = 2;
-    _controller.categories.length - (index * 2) == 1 ? state = 1 : state = 2;
+    int state = _controller.categories.length - (index * 2) == 1 ? 1 : 2;
+    int tempIndex = index * 2 > _controller.categories.length - 1
+        ? _controller.categories.length - 1
+        : index * 2;
     return buildItemRow(
       context,
-      index * 2 > _controller.categories.length - 1
-          ? _controller.categories.length - 1
-          : index * 2,
+      tempIndex,
       state,
     );
   }

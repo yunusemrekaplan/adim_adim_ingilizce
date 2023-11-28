@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/view/theme/library.dart' as themes;
+import '../widget/library.dart' as widgets;
 
-import '../widget/my_bottom_navigation_bar.dart';
 import 'controller.dart';
 
 class Screen extends StatelessWidget {
@@ -24,9 +24,9 @@ class Screen extends StatelessWidget {
           _themeController.changeTheme();
         },
         //backgroundColor: Colors.deepPurple,
-        child: Obx(() => _themeController.icon.value),
+        child: Obx(() => _themeController.modeIcon.value),
       ),
-      bottomNavigationBar: const MyBottomNavigationBar(activeIndex: 1),
+      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 1),
     );
   }
 }

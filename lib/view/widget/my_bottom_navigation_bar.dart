@@ -13,9 +13,12 @@ class MyBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar(
-      icons: const <IconData>[Icons.home, Icons.person],
+      icons: const <IconData>[Icons.category, Icons.person],
       activeIndex: activeIndex,
       gapLocation: GapLocation.center,
+      backgroundColor: Colors.grey,
+      activeColor: Colors.black,
+      inactiveColor: Colors.white,
       //notchSmoothness: NotchSmoothness.verySmoothEdge,
       leftCornerRadius: 32,
       rightCornerRadius: 32,

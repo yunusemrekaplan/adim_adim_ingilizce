@@ -86,14 +86,6 @@ final darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
     background: const Color(0xFF212121),
   ),
-  buttonTheme: ButtonThemeData(
-    buttonColor: Colors.grey,
-    textTheme: ButtonTextTheme.primary,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(18.0),
-      side: const BorderSide(color: Colors.white),
-    ),
-  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.white,
