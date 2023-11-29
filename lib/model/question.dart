@@ -5,55 +5,195 @@ class Question {
   late final Category category;
   late final String questionText;
   late final String answerText;
-  late final List<String> wrongAnswers;
+  late final List<String> answers;
 
   Question({
     required this.questionText,
     required this.answerText,
-    required this.wrongAnswers,
+    required this.answers,
   });
 }
 
 List<Question> colorQuestions = <Question>[
   Question(
-    questionText: 'Orange',
-    answerText: 'Turuncu',
-    wrongAnswers: ['Sarı', 'Kırmızı', 'Mavi'],
-  ),
-  Question(
-    questionText: 'Blue',
-    answerText: 'Mavi',
-    wrongAnswers: ['Yeşil', 'Kırmızı', 'Turuncu'],
-  ),
-  Question(
-    questionText: 'Red',
-    answerText: 'Kırmızı',
-    wrongAnswers: ['Sarı', 'Mavi', 'Turuncu'],
-  ),
-  Question(
-    questionText: 'Yellow',
-    answerText: 'Sarı',
-    wrongAnswers: ['Kırmızı', 'Mavi', 'Yeşil'],
-  ),
-  Question(
     questionText: 'Green',
     answerText: 'Yeşil',
-    wrongAnswers: ['Sarı', 'Mavi', 'Turuncu'],
+    answers: ['Kırmızı', 'Sarı', 'Yeşil', 'Mavi'],
   ),
   Question(
     questionText: 'Purple',
     answerText: 'Mor',
-    wrongAnswers: ['Mavi', 'Kırmızı', 'Yeşil'],
+    answers: ['Turuncu', 'Pembe', 'Mor', 'Gri'],
   ),
   Question(
-    questionText: 'White',
-    answerText: 'Beyaz',
-    wrongAnswers: ['Sarı', 'Kırmızı', 'Turuncu'],
+    questionText: 'Yellow',
+    answerText: 'Sarı',
+    answers: ['Siyah', 'Beyaz', 'Sarı', 'Kahverengi'],
+  ),
+  Question(
+    questionText: 'Red',
+    answerText: 'Kırmızı',
+    answers: ['Mavi', 'Yeşil', 'Kırmızı', 'Sarı'],
   ),
   Question(
     questionText: 'Black',
     answerText: 'Siyah',
-    wrongAnswers: ['Beyaz', 'Mavi', 'Kırmızı'],
+    answers: ['Beyaz', 'Siyah', 'Gri', 'Kahverengi'],
+  ),
+  Question(
+    questionText: 'Pink',
+    answerText: 'Pembe',
+    answers: ['Turuncu', 'Pembe', 'Mor', 'Sarı'],
+  ),
+  Question(
+    questionText: 'Brown',
+    answerText: 'Kahverengi',
+    answers: ['Mavi', 'Siyah', 'Kahverengi', 'Yeşil'],
+  ),
+  Question(
+    questionText: 'Gray',
+    answerText: 'Gri',
+    answers: ['Beyaz', 'Gri', 'Pembe', 'Kırmızı'],
+  ),
+  Question(
+    questionText: 'Blue',
+    answerText: 'Mavi',
+    answers: ['Sarı', 'Mavi', 'Yeşil', 'Siyah'],
+  ),
+  Question(
+    questionText: 'Orange',
+    answerText: 'Turuncu',
+    answers: ['Mor', 'Turuncu', 'Pembe', 'Kırmızı'],
+  ),
+  Question(
+    questionText: 'White',
+    answerText: 'Beyaz',
+    answers: ['Gri', 'Beyaz', 'Sarı', 'Kahverengi'],
+  ),
+  Question(
+    questionText: 'Turquoise',
+    answerText: 'Turkuaz',
+    answers: ['Turuncu', 'Pembe', 'Mor', 'Turkuaz'],
+  ),
+  Question(
+    questionText: 'Gold',
+    answerText: 'Altın',
+    answers: ['Gümüş', 'Altın', 'Sarı', 'Yeşil'],
+  ),
+  Question(
+    questionText: 'Silver',
+    answerText: 'Gümüş',
+    answers: ['Altın', 'Gümüş', 'Beyaz', 'Gri'],
+  ),
+  Question(
+    questionText: 'Indigo',
+    answerText: 'Çivit Mavisi',
+    answers: ['Mor', 'Çivit Mavisi', 'Yeşil', 'Turuncu'],
+  ),
+  Question(
+    questionText: 'Cyan',
+    answerText: 'Camgöbeği',
+    answers: ['Sarı', 'Camgöbeği', 'Pembe', 'Yeşil'],
+  ),
+  Question(
+    questionText: 'Maroon',
+    answerText: 'Kestane Rengi',
+    answers: ['Kestane Rengi', 'Siyah', 'Kahverengi', 'Beyaz'],
+  ),
+  Question(
+    questionText: 'Lavender',
+    answerText: 'Lavanta',
+    answers: ['Lavanta', 'Turuncu', 'Pembe', 'Yeşil'],
+  ),
+  Question(
+    questionText: 'Beige',
+    answerText: 'Bej',
+    answers: ['Beyaz', 'Sarı', 'Bej', 'Gri'],
+  ),
+  Question(
+    questionText: 'Olive',
+    answerText: 'Zeytin Yeşili',
+    answers: ['Zeytin Yeşili', 'Turuncu', 'Kahverengi', 'Siyah'],
+  ),
+  Question(
+    questionText: 'Violet',
+    answerText: 'Menekşe Rengi',
+    answers: ['Menekşe Rengi', 'Turuncu', 'Pembe', 'Yeşil'],
+  ),
+  Question(
+    questionText: 'Teal',
+    answerText: 'Deniz Mavisi',
+    answers: ['Turuncu', 'Kahverengi', 'Deniz Mavisi', 'Kırmızı'],
+  ),
+  Question(
+    questionText: 'Charcoal',
+    answerText: 'Kömür Rengi',
+    answers: ['Kömür Rengi', 'Beyaz', 'Siyah', 'Pembe'],
+  ),
+  Question(
+    questionText: 'Magenta',
+    answerText: 'Mor',
+    answers: ['Sarı', 'Siyah', 'Mor', 'Yeşil'],
+  ),
+  Question(
+    questionText: 'Crimson',
+    answerText: 'Kırmızı',
+    answers: ['Mor', 'Gri', 'Kahverengi', 'Kırmızı'],
+  ),
+  Question(
+    questionText: 'Salmon',
+    answerText: 'Somon Rengi',
+    answers: ['Somon Rengi', 'Kömür Rengi', 'Sarı', 'Magenta'],
+  ),
+  Question(
+    questionText: 'Burgundy',
+    answerText: 'Bordo',
+    answers: ['Turuncu', 'Burgonya', 'Gri', 'Bordo'],
+  ),
+  Question(
+    questionText: 'Chartreuse',
+    answerText: 'Açık Yeşil',
+    answers: ['Sarı', 'Turuncu', 'Açık Yeşil', 'Kahverengi'],
+  ),
+  Question(
+    questionText: 'Sepia',
+    answerText: 'Sepya',
+    answers: ['Siyah', 'Mor', 'Gri', 'Sepya'],
+  ),
+  Question(
+    questionText: 'Turmeric',
+    answerText: 'Sarı',
+    answers: ['Sarı', 'Kırmızı', 'Yeşil', 'Mavi'],
+  ),
+  Question(
+    questionText: 'Coral',
+    answerText: 'Turuncu',
+    answers: ['Turuncu', 'Mavi', 'Mor', 'Kahverengi'],
+  ),
+  Question(
+    questionText: 'Amber',
+    answerText: 'Turuncu',
+    answers: ['Yeşil', 'Amber', 'Turuncu', 'Pembe'],
+  ),
+  Question(
+    questionText: 'Auburn',
+    answerText: 'Kahverengi',
+    answers: ['Kahverengi', 'Mor', 'Sarı', 'Kırmızı'],
+  ),
+  Question(
+    questionText: 'Pearl',
+    answerText: 'İnci',
+    answers: ['İnci', 'Gri', 'Mavi', 'Sarı'],
+  ),
+  Question(
+    questionText: 'Mint',
+    answerText: 'Yeşil',
+    answers: ['Yeşil', 'Turuncu', 'Mor', 'Kahverengi'],
+  ),
+  Question(
+    questionText: 'Slate',
+    answerText: 'Gri',
+    answers: ['Gri', 'Sarı', 'Turuncu', 'Mavi'],
   ),
 ];
 
@@ -61,22 +201,22 @@ List<Question> animalQuestions = <Question>[
   Question(
     questionText: 'Cat',
     answerText: 'Kedi',
-    wrongAnswers: ['Köpek', 'Kuş', 'At'],
+    answers: ['Köpek', 'Kuş', 'At'],
   ),
   Question(
     questionText: 'Dog',
     answerText: 'Köpek',
-    wrongAnswers: ['Kedi', 'Kuş', 'At'],
+    answers: ['Kedi', 'Kuş', 'At'],
   ),
   Question(
     questionText: 'Bird',
     answerText: 'Kuş',
-    wrongAnswers: ['Kedi', 'Köpek', 'At'],
+    answers: ['Kedi', 'Köpek', 'At'],
   ),
   Question(
     questionText: 'Horse',
     answerText: 'At',
-    wrongAnswers: ['Kedi', 'Köpek', 'Kuş'],
+    answers: ['Kedi', 'Köpek', 'Kuş'],
   ),
 ];
 
@@ -84,22 +224,22 @@ List<Question> weatherQuestions = <Question>[
   Question(
     questionText: 'Cloudy',
     answerText: 'Bulutlu',
-    wrongAnswers: ['Güneşli', 'Yağmurlu', 'Karlı'],
+    answers: ['Güneşli', 'Yağmurlu', 'Karlı'],
   ),
   Question(
     questionText: 'Sunny',
     answerText: 'Güneşli',
-    wrongAnswers: ['Bulutlu', 'Yağmurlu', 'Karlı'],
+    answers: ['Bulutlu', 'Yağmurlu', 'Karlı'],
   ),
   Question(
     questionText: 'Rainy',
     answerText: 'Yağmurlu',
-    wrongAnswers: ['Bulutlu', 'Güneşli', 'Karlı'],
+    answers: ['Bulutlu', 'Güneşli', 'Karlı'],
   ),
   Question(
     questionText: 'Snowy',
     answerText: 'Karlı',
-    wrongAnswers: ['Bulutlu', 'Güneşli', 'Yağmurlu'],
+    answers: ['Bulutlu', 'Güneşli', 'Yağmurlu'],
   ),
 ];
 
@@ -107,22 +247,22 @@ List<Question> foodQuestions = <Question>[
   Question(
     questionText: 'Bread',
     answerText: 'Ekmek',
-    wrongAnswers: ['Peynir', 'Makarna', 'Pilav'],
+    answers: ['Peynir', 'Makarna', 'Pilav'],
   ),
   Question(
     questionText: 'Cheese',
     answerText: 'Peynir',
-    wrongAnswers: ['Ekmek', 'Makarna', 'Pilav'],
+    answers: ['Ekmek', 'Makarna', 'Pilav'],
   ),
   Question(
     questionText: 'Pasta',
     answerText: 'Makarna',
-    wrongAnswers: ['Ekmek', 'Peynir', 'Pilav'],
+    answers: ['Ekmek', 'Peynir', 'Pilav'],
   ),
   Question(
     questionText: 'Rice',
     answerText: 'Pilav',
-    wrongAnswers: ['Ekmek', 'Peynir', 'Makarna'],
+    answers: ['Ekmek', 'Peynir', 'Makarna'],
   ),
 ];
 
@@ -130,21 +270,21 @@ List<Question> fruitQuestions = <Question>[
   Question(
     questionText: 'Apple',
     answerText: 'Elma',
-    wrongAnswers: ['Armut', 'Portakal', 'Muz'],
+    answers: ['Armut', 'Portakal', 'Muz'],
   ),
   Question(
     questionText: 'Pear',
     answerText: 'Armut',
-    wrongAnswers: ['Elma', 'Portakal', 'Muz'],
+    answers: ['Elma', 'Portakal', 'Muz'],
   ),
   Question(
     questionText: 'Orange',
     answerText: 'Portakal',
-    wrongAnswers: ['Elma', 'Armut', 'Muz'],
+    answers: ['Elma', 'Armut', 'Muz'],
   ),
   Question(
     questionText: 'Banana',
     answerText: 'Muz',
-    wrongAnswers: ['Elma', 'Armut', 'Portakal'],
+    answers: ['Elma', 'Armut', 'Portakal'],
   ),
 ];

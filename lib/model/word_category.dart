@@ -10,14 +10,14 @@ class WordCategory extends Category {
   });
 }
 
-WordCategory colorCategory = WordCategory(
+Category colorCategory = WordCategory(
   name: 'Colors',
   description: 'Colors',
   image: 'https://manolobrides.com/images/2012/11/ColorWheel_OL.jpg',
   questions: colorQuestions,
 );
 
-WordCategory animalCategory = WordCategory(
+Category animalCategory = WordCategory(
   name: 'Animals',
   description: 'Animals',
   image:
@@ -25,7 +25,7 @@ WordCategory animalCategory = WordCategory(
   questions: animalQuestions,
 );
 
-WordCategory weatherCategory = WordCategory(
+Category weatherCategory = WordCategory(
   name: 'Weather',
   description: 'Weather',
   image:
@@ -33,7 +33,7 @@ WordCategory weatherCategory = WordCategory(
   questions: weatherQuestions,
 );
 
-WordCategory foodCategory = WordCategory(
+Category foodCategory = WordCategory(
   name: 'Food',
   description: 'Food',
   image:
@@ -41,7 +41,7 @@ WordCategory foodCategory = WordCategory(
   questions: foodQuestions,
 );
 
-WordCategory fruitCategory = WordCategory(
+Category fruitCategory = WordCategory(
   name: 'Fruit',
   description: 'Fruit',
   image: 'https://promova.com/content/list_of_fruits_6f8aa72869.png',

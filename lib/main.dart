@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'view/profile/library.dart' as profile;
 import 'view/theme/library.dart' as themes;
 import 'view/categories/library.dart' as categories;
+import 'view/questions/library.dart' as questions;
 
 void main() {
   runApp(MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/categories', page: () => categories.Screen()),
         GetPage(name: '/profile', page: () => profile.Screen()),
+        GetPage(name: '/questions', page: () => questions.Screen()),
         //GetPage(name: '/', page: page)
       ],
     );
