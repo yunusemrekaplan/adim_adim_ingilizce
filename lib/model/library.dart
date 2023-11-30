@@ -1,5 +1,6 @@
 library model;
 
+export 'answer.dart';
 export 'category.dart';
 export 'profile.dart';
 export 'question.dart';
