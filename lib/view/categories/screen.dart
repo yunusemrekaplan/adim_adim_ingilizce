@@ -75,7 +75,7 @@ class Screen extends StatelessWidget {
       padding: kPadding,
       child: IconButton(
         onPressed: () {
-          Get.offNamed('/questions', arguments: category);
+          Get.toNamed('/questions', arguments: category);
         },
         icon: Image.network(
           category.image,
