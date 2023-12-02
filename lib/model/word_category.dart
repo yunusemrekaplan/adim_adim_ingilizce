@@ -1,12 +1,12 @@
 import 'category.dart';
-import 'question.dart';
+import 'word.dart';
 
 class WordCategory extends Category {
   WordCategory({
     required super.name,
     required super.description,
     required super.image,
-    required super.questions,
+    required super.words,
   });
 }
 
@@ -14,7 +14,7 @@ Category colorCategory = WordCategory(
   name: 'Colors',
   description: 'Colors',
   image: 'https://manolobrides.com/images/2012/11/ColorWheel_OL.jpg',
-  questions: colorQuestions,
+  words: colorQuestions,
 );
 
 Category animalCategory = WordCategory(
@@ -22,7 +22,7 @@ Category animalCategory = WordCategory(
   description: 'Animals',
   image:
       'https://upload.wikimedia.org/wikipedia/commons/6/6f/Animal_diversity_b.png',
-  questions: animalQuestions,
+  words: animalQuestions,
 );
 
 Category weatherCategory = WordCategory(
@@ -30,7 +30,7 @@ Category weatherCategory = WordCategory(
   description: 'Weather',
   image:
       'https://www.theschoolrun.com/sites/theschoolrun.com/files/weather_.jpg',
-  questions: weatherQuestions,
+  words: weatherQuestions,
 );
 
 Category foodCategory = WordCategory(
@@ -38,12 +38,12 @@ Category foodCategory = WordCategory(
   description: 'Food',
   image:
       'https://honehealth.com/wp-content/uploads/2023/06/high-protein-fast-food-1.webp',
-  questions: foodQuestions,
+  words: foodQuestions,
 );
 
 Category fruitCategory = WordCategory(
   name: 'Fruit',
   description: 'Fruit',
   image: 'https://promova.com/content/list_of_fruits_6f8aa72869.png',
-  questions: fruitQuestions,
+  words: fruitQuestions,
 );

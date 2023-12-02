@@ -64,7 +64,7 @@ class Screen extends StatelessWidget {
         height: Get.height * 0.4,
         child: Center(
           child: Text(
-            _controller.question.text,
+            _controller.word.text,
             //style: const TextStyle(fontSize: 24),
           ),
         ),
@@ -81,7 +81,7 @@ class Screen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 25.0, bottom: 10.0),
               child: widgets.AnswerButton(
-                answer: _controller.question.answers[0],
+                answer: _controller.word.answers[0],
                 buttonColor: _controller.getButtonColor(0),
                 onPressed: () => _controller.onButtonPressed(0),
                 isAnswered: _controller.isAnswered,
@@ -90,7 +90,7 @@ class Screen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 25.0, bottom: 10.0),
               child: widgets.AnswerButton(
-                answer: _controller.question.answers[1],
+                answer: _controller.word.answers[1],
                 buttonColor: _controller.getButtonColor(1),
                 onPressed: () => _controller.onButtonPressed(1),
                 isAnswered: _controller.isAnswered,
@@ -104,7 +104,7 @@ class Screen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(left: 25.0, bottom: 10.0),
                 child: widgets.AnswerButton(
-                  answer: _controller.question.answers[2],
+                  answer: _controller.word.answers[2],
                   buttonColor: _controller.getButtonColor(2),
                   onPressed: () => _controller.onButtonPressed(2),
                   isAnswered: _controller.isAnswered,
@@ -112,7 +112,7 @@ class Screen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 25.0, bottom: 10.0),
               child: widgets.AnswerButton(
-                answer: _controller.question.answers[3],
+                answer: _controller.word.answers[3],
                 buttonColor: _controller.getButtonColor(3),
                 onPressed: () => _controller.onButtonPressed(3),
                 isAnswered: _controller.isAnswered,
