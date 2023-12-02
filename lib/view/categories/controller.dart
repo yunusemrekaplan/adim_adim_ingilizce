@@ -23,6 +23,10 @@ class ControllerCategory extends GetxController {
   }
   */
 
+  final _isCategorySelected = false.obs;
+
+  bool get isCategorySelected => _isCategorySelected.value;
+
   final categories = <model.Category>[
     model.colorCategory,
     model.animalCategory,
@@ -37,5 +41,13 @@ class ControllerCategory extends GetxController {
 
   Future<void> init() async {
     // await CategoryService.fetchCategory();
+  }
+
+  void selectCategory() {
+    _isCategorySelected.value = true;
+  }
+
+  void unselectCategory() {
+    _isCategorySelected.value = false;
   }
 }

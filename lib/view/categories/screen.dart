@@ -27,7 +27,11 @@ class Screen extends StatelessWidget {
         title: const Text('Categories'),
         centerTitle: true,
       ),
-      body: buildBody(),
+      body: Obx(
+        () => _controller.isCategorySelected
+            ? buildCategories()
+            : buildQuestionButtons(),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
@@ -38,7 +42,30 @@ class Screen extends StatelessWidget {
     );
   }
 
-  ListView buildBody() {
+  Center buildQuestionButtons() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          buildQuestionButton('Word Practice', 1),
+          const SizedBox(height: 20),
+          buildQuestionButton('Questions', 2),
+        ],
+      ),
+    );
+  }
+
+  ElevatedButton buildQuestionButton(String text, int index) {
+    return ElevatedButton(
+      onPressed: () {
+        _controller.selectCategory();
+        //Get.toNamed('/questions', arguments: index);
+      },
+      child: Text(text),
+    );
+  }
+
+  ListView buildCategories() {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: _controller.categories.length % 2 == 0
@@ -75,6 +102,7 @@ class Screen extends StatelessWidget {
       padding: kPadding,
       child: IconButton(
         onPressed: () {
+          _controller.unselectCategory();
           Get.toNamed('/questions', arguments: category);
         },
         icon: Image.network(
