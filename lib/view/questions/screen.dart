@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
 
-import '../../model/library.dart' as model;
 import '../../view/widget/library.dart' as widgets;
 
 class Screen extends StatelessWidget {
@@ -124,29 +121,6 @@ class Screen extends StatelessWidget {
           ],
         )
       ],
-    );
-  }
-
-  Widget buildAnswerButton({
-    required model.Answer answer,
-    required VoidCallback onPressed,
-    required Color buttonColor,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Obx(
-        () => ElevatedButton(
-          onPressed: _controller.isAnswered
-              ? () {
-                  print('missclick');
-                }
-              : onPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: buttonColor,
-          ),
-          child: Text(answer.text),
-        ),
-      ),
     );
   }
 

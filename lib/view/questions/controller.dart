@@ -27,9 +27,16 @@ class ControllerQuestions extends GetxController {
   bool get isFinished => _isFinished.value;
   Color getButtonColor(int index) => _buttonColors[index].value;
 
-  Future<void> fetchQuestions() async {
+  void fetchQuestions() async {
     _questions = category.questions;
     _questions.shuffle();
+    answersShuffle();
+  }
+
+  void answersShuffle() {
+    for (var question in _questions) {
+      question.answers.shuffle();
+    }
   }
 
   void onButtonPressed(int index) {
@@ -91,5 +98,6 @@ class ControllerQuestions extends GetxController {
     for (var color in _buttonColors) {
       color.value = Colors.blueGrey;
     }
+    answersShuffle();
   }
 }
