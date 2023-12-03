@@ -1,11 +1,11 @@
-import 'package:adim_adim_turkce/model/library.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../model/question/question.dart';
+
 class ControllerQuestions extends GetxController {
-  ControllerQuestions({required this.category});
-  late final Category category;
-  late final List<Word> _words;
+  ControllerQuestions({required this.questions});
+  late final List<Question> questions;
   final _questionIndex = 0.obs;
   final _correctAnswers = 0.obs;
   final _incorrectAnswers = 0.obs;
@@ -16,7 +16,7 @@ class ControllerQuestions extends GetxController {
   final _isFinished = false.obs;
   final _buttonColors = List.generate(4, (_) => Colors.blueGrey.obs);
 
-  Word get word => _words[_questionIndex.value];
+  Question get question => questions[_questionIndex.value];
   int get questionIndex => _questionIndex.value;
   int get correctAnswers => _correctAnswers.value;
   int get incorrectAnswers => _incorrectAnswers.value;
@@ -28,19 +28,18 @@ class ControllerQuestions extends GetxController {
   Color getButtonColor(int index) => _buttonColors[index].value;
 
   void fetchQuestions() async {
-    _words = category.words;
-    _words.shuffle();
+    questions.shuffle();
     answersShuffle();
   }
 
   void answersShuffle() {
-    for (var question in _words) {
+    for (var question in questions) {
       question.answers.shuffle();
     }
   }
 
   void onButtonPressed(int index) {
-    if (word.answers[index].isCorrect) {
+    if (question.answers[index].isCorrect) {
       correctAnswer();
       _buttonColors[index].value = Colors.green;
     } else {
@@ -48,7 +47,7 @@ class ControllerQuestions extends GetxController {
       _buttonColors[index].value = Colors.red;
     }
     for (int i = 0; i < 4; i++) {
-      if (i != index && word.answers[i].isCorrect) {
+      if (i != index && question.answers[i].isCorrect) {
         _buttonColors[i].value = Colors.green;
       }
     }
@@ -56,7 +55,7 @@ class ControllerQuestions extends GetxController {
 
   void nextQuestion() {
     _questionIndex.value++;
-    _isFinished.value = _questionIndex.value == _words.length;
+    _isFinished.value = _questionIndex.value == questions.length;
     resetButtonColors();
     _isAnswered.value = false;
     _isCorrect.value = false;
@@ -90,7 +89,7 @@ class ControllerQuestions extends GetxController {
     _isCorrect.value = false;
     _isIncorrect.value = false;
     _isFinished.value = false;
-    _words.shuffle();
+    questions.shuffle();
     resetButtonColors();
   }
 

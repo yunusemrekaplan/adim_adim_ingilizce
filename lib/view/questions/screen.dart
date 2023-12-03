@@ -7,7 +7,7 @@ import '../../view/widget/library.dart' as widgets;
 class Screen extends StatelessWidget {
   Screen({super.key});
 
-  final _controller = Get.put(ControllerQuestions(category: Get.arguments));
+  final _controller = Get.put(ControllerQuestions(questions: Get.arguments));
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,14 @@ class Screen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SizedBox(height: Get.height * 0.016),
           Obx(
             () => Text(
               'Score: ${_controller.score}',
               style: const TextStyle(fontSize: 24),
             ),
           ),
+          SizedBox(height: Get.height * 0.016),
           Expanded(
             child: Obx(
               () => _controller.isFinished ? buildFinished() : buildQuestion(),
@@ -51,21 +53,33 @@ class Screen extends StatelessWidget {
     return Column(
       children: [
         buildQuestionText(),
-        buildAnswers(),
+        SizedBox(height: Get.height * 0.04),
+        Expanded(child: buildAnswers()),
       ],
     );
   }
 
   Widget buildQuestionText() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
+      padding: EdgeInsets.only(
+        left: Get.width * 0.035,
+        right: Get.width * 0.035,
+      ),
+      child: Container(
         width: double.infinity,
-        height: Get.height * 0.4,
+        height: Get.height * 0.28,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey[800],
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Center(
-          child: Text(
-            _controller.word.text,
-            //style: const TextStyle(fontSize: 24),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              //_controller.question.question!,
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              //style: const TextStyle(color: Colors.black),
+            ),
           ),
         ),
       ),
@@ -74,52 +88,44 @@ class Screen extends StatelessWidget {
 
   Widget buildAnswers() {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 25.0, bottom: 10.0),
-              child: widgets.AnswerButton(
-                answer: _controller.word.answers[0],
-                buttonColor: _controller.getButtonColor(0),
-                onPressed: () => _controller.onButtonPressed(0),
-                isAnswered: _controller.isAnswered,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 25.0, bottom: 10.0),
-              child: widgets.AnswerButton(
-                answer: _controller.word.answers[1],
-                buttonColor: _controller.getButtonColor(1),
-                onPressed: () => _controller.onButtonPressed(1),
-                isAnswered: _controller.isAnswered,
-              ),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 10.0),
+          child: widgets.AnswerButton(
+            answer: _controller.question.answers[0],
+            buttonColor: _controller.getButtonColor(0),
+            onPressed: () => _controller.onButtonPressed(0),
+            isAnswered: _controller.isAnswered,
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-                padding: const EdgeInsets.only(left: 25.0, bottom: 10.0),
-                child: widgets.AnswerButton(
-                  answer: _controller.word.answers[2],
-                  buttonColor: _controller.getButtonColor(2),
-                  onPressed: () => _controller.onButtonPressed(2),
-                  isAnswered: _controller.isAnswered,
-                )),
-            Padding(
-              padding: const EdgeInsets.only(right: 25.0, bottom: 10.0),
-              child: widgets.AnswerButton(
-                answer: _controller.word.answers[3],
-                buttonColor: _controller.getButtonColor(3),
-                onPressed: () => _controller.onButtonPressed(3),
-                isAnswered: _controller.isAnswered,
-              ),
-            ),
-          ],
-        )
+        Padding(
+          padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 10.0),
+          child: widgets.AnswerButton(
+            answer: _controller.question.answers[1],
+            buttonColor: _controller.getButtonColor(1),
+            onPressed: () => _controller.onButtonPressed(1),
+            isAnswered: _controller.isAnswered,
+          ),
+        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 10.0),
+            child: widgets.AnswerButton(
+              answer: _controller.question.answers[2],
+              buttonColor: _controller.getButtonColor(2),
+              onPressed: () => _controller.onButtonPressed(2),
+              isAnswered: _controller.isAnswered,
+            )),
+        Padding(
+          padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 10.0),
+          child: widgets.AnswerButton(
+            answer: _controller.question.answers[3],
+            buttonColor: _controller.getButtonColor(3),
+            onPressed: () => _controller.onButtonPressed(3),
+            isAnswered: _controller.isAnswered,
+          ),
+        ),
       ],
     );
   }
