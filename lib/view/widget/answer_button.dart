@@ -29,7 +29,7 @@ class AnswerButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
         ),
-        child: Text(answer.text),
+        child: Text(answer.answer),
       ),
     );
   }

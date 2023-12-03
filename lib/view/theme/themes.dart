@@ -8,27 +8,27 @@ final lightTheme = ThemeData(
   dividerColor: Colors.white54,
   textTheme: const TextTheme(
     displayLarge: TextStyle(
-        fontSize: 72.0, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 72.0, color: Colors.black, fontWeight: FontWeight.bold),
     displayMedium: TextStyle(
-        fontSize: 36.0, color: Colors.white, fontStyle: FontStyle.italic),
+        fontSize: 36.0, color: Colors.black, fontStyle: FontStyle.italic),
     displaySmall: TextStyle(
-        fontSize: 24.0, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
     headlineLarge: TextStyle(
-        fontSize: 20.0, color: Colors.white, fontStyle: FontStyle.italic),
+        fontSize: 20.0, color: Colors.black, fontStyle: FontStyle.italic),
     headlineMedium: TextStyle(
-        fontSize: 18.0, color: Colors.white, fontStyle: FontStyle.italic),
+        fontSize: 18.0, color: Colors.black, fontStyle: FontStyle.italic),
     headlineSmall: TextStyle(
-        fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.bold),
     titleLarge: TextStyle(
-        fontSize: 36.0, color: Colors.white, fontStyle: FontStyle.italic),
+        fontSize: 36.0, color: Colors.black, fontStyle: FontStyle.italic),
     titleMedium: TextStyle(
-        fontSize: 20.0, color: Colors.white, fontStyle: FontStyle.italic),
+        fontSize: 20.0, color: Colors.black, fontStyle: FontStyle.italic),
     titleSmall: TextStyle(
-        fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.bold),
     bodyLarge:
-        TextStyle(fontSize: 30.0, color: Colors.white, fontFamily: 'Hind'),
+        TextStyle(fontSize: 30.0, color: Colors.black, fontFamily: 'Hind'),
     bodyMedium:
-        TextStyle(fontSize: 20.0, color: Colors.white, fontFamily: 'Hind'),
+        TextStyle(fontSize: 20.0, color: Colors.black, fontFamily: 'Hind'),
     bodySmall: TextStyle(fontSize: 12.0, fontFamily: 'Hind'),
     labelLarge: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
     labelMedium: TextStyle(fontSize: 12.0, fontFamily: 'Hind'),
@@ -45,6 +45,7 @@ final lightTheme = ThemeData(
         borderRadius: BorderRadius.circular(18.0),
         side: const BorderSide(color: Colors.black),
       ),
+      //textStyle: const TextStyle(color: Colors.black),
     ),
   ),
 );
