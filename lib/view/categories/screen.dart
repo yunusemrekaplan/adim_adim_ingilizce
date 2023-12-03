@@ -47,24 +47,24 @@ class Screen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          buildQuestionButton('Word Practice', 1),
+          ElevatedButton(
+            onPressed: () {
+              _controller.selectCategory();
+            },
+            child: const Text('Word Practice'),
+          ),
           const SizedBox(height: 20),
-          buildQuestionButton('Questions', 2),
+          ElevatedButton(
+            onPressed: () {
+              Get.toNamed(
+                '/questions',
+                arguments: model.FillInTheBlankQuestion.questions,
+              );
+            },
+            child: const Text('Questions'),
+          ),
         ],
       ),
-    );
-  }
-
-  ElevatedButton buildQuestionButton(String text, int index) {
-    return ElevatedButton(
-      onPressed: () {
-        //_controller.selectCategory();
-        Get.toNamed(
-          '/questions',
-          arguments: model.FillInTheBlankQuestion.questions,
-        );
-      },
-      child: Text(text),
     );
   }
 
@@ -106,7 +106,7 @@ class Screen extends StatelessWidget {
       child: IconButton(
         onPressed: () {
           _controller.unselectCategory();
-          Get.toNamed('/questions', arguments: category);
+          Get.toNamed('/questions', arguments: category.questions);
         },
         icon: Image.network(
           category.image,

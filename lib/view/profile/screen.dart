@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import '/view/theme/library.dart' as themes;
 import '../widget/library.dart' as widgets;
 
-import 'controller.dart';
-
 class Screen extends StatelessWidget {
   Screen({super.key});
-  final _controller = Get.put(ControllerProfile());
+  //final _controller = Get.put(ControllerProfile());
   final _themeController = Get.find<themes.ControllerTheme>();
 
   @override
