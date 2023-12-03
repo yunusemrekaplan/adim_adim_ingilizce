@@ -58,8 +58,11 @@ class Screen extends StatelessWidget {
   ElevatedButton buildQuestionButton(String text, int index) {
     return ElevatedButton(
       onPressed: () {
-        _controller.selectCategory();
-        //Get.toNamed('/questions', arguments: index);
+        //_controller.selectCategory();
+        Get.toNamed(
+          '/questions',
+          arguments: model.FillInTheBlankQuestion.questions,
+        );
       },
       child: Text(text),
     );
