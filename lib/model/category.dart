@@ -1,4 +1,4 @@
-import 'word.dart';
+import 'question/question.dart';
 
 abstract class Category {
   late final int id;
@@ -6,12 +6,12 @@ abstract class Category {
   late final String name;
   late final String description;
   late final String image;
-  late final List<Word> words;
+  late final List<Question> questions;
 
   Category({
     required this.name,
     required this.description,
     required this.image,
-    required this.words,
+    required this.questions,
   });
 }
