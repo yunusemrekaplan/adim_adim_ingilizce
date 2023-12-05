@@ -37,7 +37,9 @@ class Screen extends StatelessWidget {
           SizedBox(height: Get.height * 0.016),
           Expanded(
             child: Obx(
-              () => _controller.isFinished ? buildFinished() : buildQuestion(),
+              () => _controller.isFinished
+                  ? buildFinished()
+                  : buildQuestionAndAnswers(),
             ),
           ),
           Obx(
@@ -49,17 +51,17 @@ class Screen extends StatelessWidget {
     );
   }
 
-  Widget buildQuestion() {
+  Widget buildQuestionAndAnswers() {
     return Column(
       children: [
-        buildQuestionText(),
-        SizedBox(height: Get.height * 0.04),
+        buildQuestion(),
+        SizedBox(height: Get.height * 0.018),
         Expanded(child: buildAnswers()),
       ],
     );
   }
 
-  Widget buildQuestionText() {
+  Widget buildQuestion() {
     return Padding(
       padding: EdgeInsets.only(
         left: Get.width * 0.035,
@@ -75,14 +77,48 @@ class Screen extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              _controller.question.question!,
-              //'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-              //style: const TextStyle(color: Colors.black),
-            ),
+            child: _controller.question.questionText == null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: () async {
+                          await _controller.playSound(0);
+                        },
+                        icon: const Icon(Icons.record_voice_over),
+                        iconSize: Get.size.width * 0.14,
+                        color: Colors.white,
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          await _controller.playSound(1);
+                        },
+                        icon: const Icon(Icons.record_voice_over),
+                        iconSize: Get.size.width * 0.18,
+                        color: Colors.white,
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          await _controller.playSound(2);
+                        },
+                        icon: const Icon(Icons.record_voice_over),
+                        iconSize: Get.size.width * 0.22,
+                        color: Colors.white,
+                      ),
+                    ],
+                  )
+                : buildQuestionText(),
           ),
         ),
       ),
+    );
+  }
+
+  Text buildQuestionText() {
+    return Text(
+      _controller.question.questionText!,
+      //'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      //style: const TextStyle(color: Colors.black),
     );
   }
 
@@ -132,7 +168,7 @@ class Screen extends StatelessWidget {
 
   Widget buildNextButton() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: ElevatedButton(
         onPressed: _controller.isAnswered ? _controller.nextQuestion : null,
         child: const Text(
