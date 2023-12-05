@@ -56,10 +56,11 @@ class Screen extends StatelessWidget {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              Get.toNamed(
-                '/questions',
-                arguments: model.FillInTheBlankQuestion.questions,
-              );
+              List<model.Question> questions =
+                  model.FillInTheBlankQuestion.questions +
+                      model.SoundQuestion.questions;
+              //+ model.WordQuestion.questions;
+              Get.toNamed('/questions', arguments: questions);
             },
             child: const Text('Questions'),
           ),
