@@ -5,7 +5,7 @@ class FillInTheBlankQuestion extends Question {
   FillInTheBlankQuestion({
     required String question,
     required List<Answer> answers,
-  }) : super(question: question, answers: answers);
+  }) : super(questionText: question, answers: answers);
 
   /*
   factory FillInTheBlankQuestion.fromJson(Map<String, dynamic> json) {

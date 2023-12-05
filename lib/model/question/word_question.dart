@@ -5,7 +5,13 @@ class WordQuestion extends Question {
   WordQuestion({
     required String question,
     required List<Answer> answers,
-  }) : super(question: question, answers: answers);
+  }) : super(questionText: question, answers: answers);
+
+  static List<Question> questions = colorQuestions +
+      animalQuestions +
+      weatherQuestions +
+      foodQuestions +
+      fruitQuestions;
 }
 
 List<WordQuestion> colorQuestions = <WordQuestion>[
