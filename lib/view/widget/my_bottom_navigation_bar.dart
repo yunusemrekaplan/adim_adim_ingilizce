@@ -13,9 +13,9 @@ class MyBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar(
-      icons: const <IconData>[Icons.category, Icons.person],
+      icons: const <IconData>[Icons.category, Icons.star, Icons.person],
       activeIndex: activeIndex,
-      gapLocation: GapLocation.center,
+      gapLocation: GapLocation.none,
       backgroundColor: Colors.grey,
       activeColor: Colors.black,
       inactiveColor: Colors.white,
@@ -26,6 +26,8 @@ class MyBottomNavigationBar extends StatelessWidget {
         if (index == 0) {
           Get.offNamed('/categories');
         } else if (index == 1) {
+          Get.offNamed('/rank');
+        } else if (index == 2) {
           Get.offNamed('/profile');
         }
       },

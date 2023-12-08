@@ -32,13 +32,14 @@ class Screen extends StatelessWidget {
             ? buildCategories()
             : buildQuestionButtons(),
       ),
+      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 0),
+      /*
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: _themeController.changeTheme,
         child: Obx(() => _themeController.modeIcon.value),
-      ),
-      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 0),
+      ), */
     );
   }
 

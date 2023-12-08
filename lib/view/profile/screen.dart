@@ -15,7 +15,25 @@ class Screen extends StatelessWidget {
         title: const Text('Profile'),
         centerTitle: true,
       ),
-      body: const Center(),
+      body: const Center(
+        child: Column(
+          children: [
+            Icon(
+              Icons.account_circle,
+              size: 100.0,
+              color: Colors.blueGrey,
+            ),
+            Text('Yunus Emre Kaplan'),
+            Text('Total Points: 355'),
+            Text('7.Sınıf'),
+            SizedBox(height: 100.0),
+            Text('yunusemrekaplan@hotmail.com'),
+            Text('0538 000 00 00'),
+          ],
+        ),
+      ),
+      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 2),
+      /*
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -23,8 +41,7 @@ class Screen extends StatelessWidget {
         },
         //backgroundColor: Colors.deepPurple,
         child: Obx(() => _themeController.modeIcon.value),
-      ),
-      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 1),
+      ), */
     );
   }
 }
