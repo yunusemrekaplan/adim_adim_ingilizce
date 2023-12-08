@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widget/library.dart' as widgets;
+import '../../widget/library.dart' as widgets;
 import '/view/theme/library.dart' as themes;
 
 import 'controller.dart';

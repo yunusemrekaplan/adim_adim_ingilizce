@@ -2,8 +2,8 @@ import 'package:adim_adim_turkce/view/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../model/library.dart' as model;
-import '../widget/library.dart' as widgets;
+import '../../../model/library.dart' as model;
+import '../../widget/library.dart' as widgets;
 import '/view/theme/library.dart' as themes;
 
 import 'constant.dart';

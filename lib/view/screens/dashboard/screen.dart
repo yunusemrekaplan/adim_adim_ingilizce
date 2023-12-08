@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/view/theme/library.dart' as themes;
-import '../widget/library.dart' as widgets;
+import '../../widget/library.dart' as widgets;
 
 class Screen extends StatelessWidget {
   Screen({super.key});
@@ -11,7 +11,7 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: widgets.myAppBar(title: 'Profile', context: context),
+      appBar: widgets.myAppBar(title: 'Dashboard', context: context),
       body: const Center(
         child: Column(
           children: [

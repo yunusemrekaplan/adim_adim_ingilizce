@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../model/profile.dart';
-import '../../model/student.dart';
+import '../../../model/profile.dart';
+import '../../../model/student.dart';
 
 class ControllerProfile extends GetxController {
   Profile profile = Profile(

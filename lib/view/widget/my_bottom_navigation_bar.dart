@@ -28,7 +28,7 @@ class MyBottomNavigationBar extends StatelessWidget {
         } else if (index == 1) {
           Get.offNamed('/rank');
         } else if (index == 2) {
-          Get.offNamed('/profile');
+          Get.offNamed('/dashboard');
         }
       },
     );

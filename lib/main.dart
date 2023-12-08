@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'view/home/library.dart' as home;
-import 'view/profile/library.dart' as profile;
-import 'view/categories/library.dart' as categories;
-import 'view/questions/library.dart' as questions;
-import 'view/rank/library.dart' as rank;
+import 'view/screens/dashboard/library.dart' as dashboard;
+import 'view/screens/categories/library.dart' as categories;
+import 'view/screens/questions/library.dart' as questions;
+import 'view/screens/rank/library.dart' as rank;
 import 'view/theme/library.dart' as theme;
 
 void main() {
@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: theme.CustomLightTheme().themeData,
       darkTheme: theme.CustomDarkTheme().themeData,
       initialRoute: '/rank',
       getPages: [
         GetPage(name: '/categories', page: () => categories.Screen()),
-        GetPage(name: '/profile', page: () => profile.Screen()),
+        GetPage(name: '/dashboard', page: () => dashboard.Screen()),
         GetPage(name: '/questions', page: () => questions.Screen()),
         GetPage(name: '/rank', page: () => rank.Screen()),
       ],

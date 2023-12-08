@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../model/library.dart' as model;
+import '../../../model/library.dart' as model;
 
 class ControllerCategory extends GetxController {
   /*

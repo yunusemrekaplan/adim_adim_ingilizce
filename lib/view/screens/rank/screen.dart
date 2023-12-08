@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widget/library.dart' as widgets;
+import '../../widget/library.dart' as widgets;
 
 class Screen extends StatelessWidget {
   Screen({super.key});
