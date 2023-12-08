@@ -15,7 +15,10 @@ class ControllerQuestions extends GetxController {
   final _isCorrect = false.obs;
   final _isIncorrect = false.obs;
   final _isFinished = false.obs;
-  final _buttonColors = List.generate(4, (_) => Colors.blueGrey.obs);
+  final _buttonColors = List.generate(
+    4,
+    (_) => Get.theme.colorScheme.background.obs,
+  );
   AudioPlayer _player = AudioPlayer();
 
   Question get question => questions[_questionIndex.value];
@@ -43,14 +46,15 @@ class ControllerQuestions extends GetxController {
   void onButtonPressed(int index) {
     if (question.answers[index].isCorrect) {
       correctAnswer();
-      _buttonColors[index].value = Colors.green;
+      _buttonColors[index].value = Colors.green[900]!;
     } else {
       incorrectAnswer();
-      _buttonColors[index].value = Colors.red;
+      _buttonColors[index].value = Colors.red[900]!;
     }
     for (int i = 0; i < 4; i++) {
       if (i != index && question.answers[i].isCorrect) {
-        _buttonColors[i].value = Colors.green;
+        _buttonColors[i].value = Colors.green[900]!;
+        break;
       }
     }
   }
@@ -118,7 +122,7 @@ class ControllerQuestions extends GetxController {
 
   void resetButtonColors() {
     for (var color in _buttonColors) {
-      color.value = Colors.blueGrey;
+      color.value = Get.theme.colorScheme.background;
     }
   }
 

@@ -13,26 +13,25 @@ class Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: _controller,
-      builder: (_) => buildScaffold(),
+      builder: (_) => buildScaffold(context),
       initState: (_) => _controller.fetchQuestions(),
       id: 'questions',
     );
   }
 
-  Scaffold buildScaffold() {
+  Scaffold buildScaffold(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Questions'),
-        centerTitle: true,
-      ),
+      appBar: widgets.myAppBar(title: 'Questions', context: context),
       body: Column(
         children: [
           SizedBox(height: Get.height * 0.016),
           Obx(
-            () => Text(
-              'Score: ${_controller.score}',
-              style: const TextStyle(fontSize: 24),
-            ),
+            () => _controller.isFinished
+                ? const SizedBox()
+                : Text(
+                    'Score: ${_controller.score}',
+                    style: const TextStyle(fontSize: 24),
+                  ),
           ),
           SizedBox(height: Get.height * 0.016),
           Expanded(
@@ -71,7 +70,7 @@ class Screen extends StatelessWidget {
         width: double.infinity,
         height: Get.height * 0.28,
         decoration: BoxDecoration(
-          color: Colors.blueGrey[800],
+          color: Get.theme.colorScheme.secondaryContainer,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
@@ -117,8 +116,6 @@ class Screen extends StatelessWidget {
   Text buildQuestionText() {
     return Text(
       _controller.question.questionText!,
-      //'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      //style: const TextStyle(color: Colors.black),
     );
   }
 
@@ -173,7 +170,7 @@ class Screen extends StatelessWidget {
         onPressed: _controller.isAnswered ? _controller.nextQuestion : null,
         child: const Text(
           'Next',
-          style: TextStyle(color: Colors.white),
+          //style: TextStyle(color: Colors.white),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:adim_adim_turkce/view/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,16 +18,13 @@ class Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: _controller,
-      builder: (_) => buildScaffold(),
+      builder: (_) => buildScaffold(context),
     );
   }
 
-  Scaffold buildScaffold() {
+  Scaffold buildScaffold(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Categories'),
-        centerTitle: true,
-      ),
+      appBar: myAppBar(title: 'Categories', context: context),
       body: Obx(
         () => _controller.isCategorySelected
             ? buildCategories()

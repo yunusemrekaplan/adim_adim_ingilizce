@@ -11,10 +11,7 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
-      ),
+      appBar: widgets.myAppBar(title: 'Profile', context: context),
       body: const Center(
         child: Column(
           children: [

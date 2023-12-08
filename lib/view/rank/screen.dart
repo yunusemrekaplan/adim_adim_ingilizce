@@ -301,78 +301,146 @@ class Screen extends StatelessWidget {
         const SizedBox(width: 10.0),
       ],
     ),
+    Row(
+      children: [
+        const SizedBox(width: 10.0),
+        SizedBox(
+          width: Get.width * 0.13,
+          child: const Text('15'),
+        ),
+        const SizedBox(width: 10.0),
+        const Expanded(
+          child: SizedBox(
+            child: Center(child: Text('Yunus Emre Kaplan')),
+          ),
+        ),
+        const SizedBox(width: 10.0),
+        const SizedBox(
+          width: 70,
+          child: Center(child: Text('355')),
+        ),
+        const SizedBox(width: 10.0),
+      ],
+    ),
+    Row(
+      children: [
+        const SizedBox(width: 10.0),
+        SizedBox(
+          width: Get.width * 0.13,
+          child: const Text('16'),
+        ),
+        const SizedBox(width: 10.0),
+        const Expanded(
+          child: SizedBox(
+            child: Center(child: Text('Yunus Emre Kaplan')),
+          ),
+        ),
+        const SizedBox(width: 10.0),
+        const SizedBox(
+          width: 70,
+          child: Center(child: Text('355')),
+        ),
+        const SizedBox(width: 10.0),
+      ],
+    ),
+    Row(
+      children: [
+        const SizedBox(width: 10.0),
+        SizedBox(
+          width: Get.width * 0.13,
+          child: const Text('17'),
+        ),
+        const SizedBox(width: 10.0),
+        const Expanded(
+          child: SizedBox(
+            child: Center(child: Text('Yunus Emre Kaplan')),
+          ),
+        ),
+        const SizedBox(width: 10.0),
+        const SizedBox(
+          width: 70,
+          child: Center(child: Text('355')),
+        ),
+        const SizedBox(width: 10.0),
+      ],
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rank'),
-        centerTitle: true,
-      ),
+      appBar: widgets.myAppBar(title: 'Rank', context: context),
       body: Center(
         child: Column(
           children: [
             const SizedBox(height: 10.0),
-            Row(
-              children: [
-                const SizedBox(width: 10.0),
-                SizedBox(
-                  width: Get.width * 0.13,
-                  child: const Text(
-                    'Rank',
-                    style: TextStyle(color: Colors.lightGreen),
-                  ),
-                ),
-                const SizedBox(width: 10.0),
-                const Expanded(
-                  child: SizedBox(
-                    child: Center(
-                        child: Text(
-                      'Name',
-                      style: TextStyle(color: Colors.lightGreen),
-                    )),
-                  ),
-                ),
-                const SizedBox(width: 10.0),
-                const SizedBox(
-                  width: 70,
-                  child: Center(
-                      child: Text(
-                    'Points',
-                    style: TextStyle(color: Colors.lightGreen),
-                  )),
-                ),
-                const SizedBox(width: 10.0),
-              ],
-            ),
+            buildHeaderRow(),
             const SizedBox(height: 10.0),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                itemCount: rows.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      rows[index],
-                      const Divider(
-                        height: 10,
-                        thickness: 1,
-                        indent: 10,
-                        endIndent: 10,
-                        color: Colors.blueGrey,
-                      ),
-                      const SizedBox(height: 10.0),
-                    ],
-                  );
-                },
-              ),
-            ),
+            buildStudentRows(),
           ],
         ),
       ),
       bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 1),
+    );
+  }
+
+  Row buildHeaderRow() {
+    return Row(
+      children: [
+        const SizedBox(width: 10.0),
+        SizedBox(
+          width: Get.width * 0.13,
+          child: const Text(
+            'Rank',
+            style: TextStyle(color: Colors.lightGreen),
+          ),
+        ),
+        const SizedBox(width: 10.0),
+        const Expanded(
+          child: SizedBox(
+            child: Center(
+                child: Text(
+              'Name',
+              style: TextStyle(color: Colors.lightGreen),
+            )),
+          ),
+        ),
+        const SizedBox(width: 10.0),
+        const SizedBox(
+          width: 70,
+          child: Center(
+              child: Text(
+            'Points',
+            style: TextStyle(color: Colors.lightGreen),
+          )),
+        ),
+        const SizedBox(width: 10.0),
+      ],
+    );
+  }
+
+  Expanded buildStudentRows() {
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        itemCount: rows.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              rows[index],
+              const Divider(
+                height: 10,
+                thickness: 1,
+                indent: 10,
+                endIndent: 10,
+                color: Colors.blueGrey,
+              ),
+              const SizedBox(height: 10.0),
+            ],
+          );
+        },
+      ),
     );
   }
 }
