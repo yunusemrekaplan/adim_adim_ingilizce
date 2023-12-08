@@ -29,7 +29,6 @@ class Screen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 2),
       /*
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

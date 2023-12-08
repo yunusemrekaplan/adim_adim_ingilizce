@@ -30,7 +30,7 @@ class Screen extends StatelessWidget {
             ? buildCategories()
             : buildQuestionButtons(),
       ),
-      bottomNavigationBar: const widgets.MyBottomNavigationBar(activeIndex: 0),
+      //bottomNavigationBar: widgets.MyBottomNavigationBar(),
       /*
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
