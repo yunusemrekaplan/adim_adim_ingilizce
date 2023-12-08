@@ -2,11 +2,15 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/main/controller.dart';
+
 class MyBottomNavigationBar extends StatelessWidget {
-  const MyBottomNavigationBar({
+  MyBottomNavigationBar({
     super.key,
     required this.activeIndex,
   });
+
+  final _controller = Get.put(ControllerMain());
 
   final int activeIndex;
 
@@ -23,12 +27,19 @@ class MyBottomNavigationBar extends StatelessWidget {
       leftCornerRadius: 32,
       rightCornerRadius: 32,
       onTap: (index) {
-        if (index == 0) {
-          Get.offNamed('/categories');
-        } else if (index == 1) {
-          Get.offNamed('/rank');
-        } else if (index == 2) {
-          Get.offNamed('/dashboard');
+        switch (index) {
+          case 0:
+            _controller.activeIndex.value = 0;
+            _controller.title.value = 'Categories';
+            break;
+          case 1:
+            _controller.activeIndex.value = 1;
+            _controller.title.value = 'Rank';
+            break;
+          case 2:
+            _controller.activeIndex.value = 2;
+            _controller.title.value = 'Dashboard';
+            break;
         }
       },
     );
