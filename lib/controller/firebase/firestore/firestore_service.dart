@@ -36,4 +36,20 @@ class FirestoreService {
     }
     return document;
   }
+
+  Future<List<Map<String, dynamic>?>> getDocuments() async {
+    if (_db == null) await initialize();
+    List<Map<String, dynamic>?> documents = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _users.get();
+
+      documents = querySnapshot.docs.map((e) => e.data()).toList();
+      //documents = await _users.get().then((value) => value.docs);
+
+      //documents = await _users.doc();
+    } on Exception catch (e) {
+      print('FirestoreService.getDocuments: $e');
+    }
+    return documents;
+  }
 }

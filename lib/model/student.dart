@@ -1,7 +1,7 @@
 class Student {
   //late final int id;
   //late final DocumentReference referance;
-  late final String uid;
+  late final String guid;
   late final String name;
   late final String email;
   late final String phone;
@@ -9,11 +9,11 @@ class Student {
   late int totalPoints;
 
   Student({
-    required this.uid,
+    required this.guid,
   });
 
   Student.fromJson(Map<String, dynamic> json)
-      : uid = json['uid'],
+      : guid = json['guid'],
         name = json['name'],
         email = json['email'],
         phone = json['phone'],

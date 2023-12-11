@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
 
       user == null
           ? result = 'Sign in failed'
-          : Student.student = Student(uid: user.uid);
+          : Student.student = Student(guid: user.uid);
     } on Exception catch (e) {
       print('_loginUser: $e');
     }

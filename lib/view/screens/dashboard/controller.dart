@@ -6,15 +6,13 @@ import '../../../model/student.dart';
 class ControllerDash extends GetxController {
   final FirestoreService _firestoreService = FirestoreService();
   late Student student;
-  int currentIndex = 2;
 
   Future<void> getStudent() async {
     final doc = await _firestoreService.getDocument(
-      uid: Student.student.uid,
+      uid: Student.student.guid,
     );
 
     final studentMap = doc!.data();
-    print(studentMap);
 
     Student.student.name = studentMap!['name'];
     Student.student.email = studentMap['email'];
