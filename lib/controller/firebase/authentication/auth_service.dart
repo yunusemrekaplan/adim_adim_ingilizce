@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import '../firebase_options.dart';
+import '../../../model/student.dart';
 
 class AuthService {
   static final AuthService _instance = AuthService._internal();
@@ -12,15 +12,12 @@ class AuthService {
 
   AuthService._internal();
 
-  FirebaseApp? _app;
-  late final FirebaseAuth _auth;
+  FirebaseAuth? _auth;
+  final FirebaseApp _app = Firebase.app();
 
   Future<void> initialize() async {
     try {
-      _app = await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-      _auth = FirebaseAuth.instanceFor(app: _app!);
+      _auth = FirebaseAuth.instanceFor(app: _app);
     } on Exception catch (e) {
       print('AuthService.initialize: $e');
       // TODO
@@ -34,10 +31,10 @@ class AuthService {
   }) async {
     User? user;
 
-    if (_app == null) await initialize();
+    if (_auth == null) await initialize();
 
     try {
-      final userCredential = await _auth.signInWithEmailAndPassword(
+      final userCredential = await _auth!.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -53,6 +50,9 @@ class AuthService {
       );
       */
     }
+
+    user != null ? Student.student = Student(uid: user.uid) : null;
+
     return user;
   }
 }
