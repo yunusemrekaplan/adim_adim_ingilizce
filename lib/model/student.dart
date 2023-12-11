@@ -1,15 +1,24 @@
 class Student {
   //late final int id;
-  //late final Referance referance;
-  late final String guid;
+  //late final DocumentReference referance;
+  late final String uid;
   late final String name;
   late final String email;
   late final String phone;
-  late final String classNo;
+  late final int classNo;
   late int totalPoints;
 
   Student({
-    required this.name,
-    required this.email,
+    required this.uid,
   });
+
+  Student.fromJson(Map<String, dynamic> json)
+      : uid = json['uid'],
+        name = json['name'],
+        email = json['email'],
+        phone = json['phone'],
+        classNo = json['classNo'],
+        totalPoints = json['totalPoints'];
+
+  static late Student student;
 }
