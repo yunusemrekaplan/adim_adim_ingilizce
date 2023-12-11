@@ -1,7 +1,8 @@
-import 'package:adim_adim_turkce/view/screens/main/main_screen.dart';
+import 'package:adim_adim_turkce/view/screens/main/screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'view/home/library.dart' as home;
+import 'controller/firebase/firebase_options.dart';
 import 'view/screens/dashboard/library.dart' as dashboard;
 import 'view/screens/categories/library.dart' as categories;
 import 'view/screens/questions/library.dart' as questions;
@@ -9,7 +10,13 @@ import 'view/screens/rank/library.dart' as rank;
 import 'view/screens/auth/library.dart' as auth;
 import 'view/theme/library.dart' as theme;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MyApp());
 }
 
@@ -27,8 +34,8 @@ class MyApp extends StatelessWidget {
       darkTheme: theme.CustomDarkTheme().themeData,
       initialRoute: '/auth',
       getPages: [
-        GetPage(name: '/auth', page: () => const auth.LoginScreen()),
-        GetPage(name: '/main', page: () => MainScreen()),
+        GetPage(name: '/auth', page: () => auth.LoginScreen()),
+        GetPage(name: '/', page: () => MainScreen()),
         GetPage(name: '/dashboard', page: () => dashboard.Screen()),
         GetPage(name: '/rank', page: () => rank.Screen()),
         GetPage(name: '/categories', page: () => categories.Screen()),

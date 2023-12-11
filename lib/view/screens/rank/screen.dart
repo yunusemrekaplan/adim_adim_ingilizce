@@ -82,6 +82,8 @@ class Screen extends StatelessWidget {
             const SizedBox(height: 10.0),
             buildHeaderRow(),
             const SizedBox(height: 10.0),
+
+            // Firestore stream
             buildStudentRows(),
           ],
         ),

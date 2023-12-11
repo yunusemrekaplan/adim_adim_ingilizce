@@ -1,9 +1,10 @@
+import 'package:adim_adim_turkce/model/student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_login/flutter_login.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/firebase/authentication/auth_service.dart';
 import 'constants.dart';
 
 const mockUsers = {
@@ -14,22 +15,28 @@ const mockUsers = {
 };
 
 class LoginScreen extends StatelessWidget {
-  static const routeName = '/auth';
-
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+  final AuthService _authService = AuthService();
 
   Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
 
-  Future<String?> _loginUser(LoginData data) {
-    return Future.delayed(loginTime).then((_) {
-      if (!mockUsers.containsKey(data.name)) {
-        return 'User not exists';
-      }
-      if (mockUsers[data.name] != data.password) {
-        return 'Password does not match';
-      }
-      return null;
-    });
+  Future<String?> _loginUser(LoginData data) async {
+    String? result;
+    try {
+      final user = await _authService.signIn(
+        email: data.name,
+        password: data.password,
+      );
+
+      user == null
+          ? result = 'Sign in failed'
+          : Student.student = Student(uid: user.uid);
+    } on Exception catch (e) {
+      print('_loginUser: $e');
+    }
+    // aa@a.com
+
+    return result;
   }
 
   Future<String?> _signupUser(SignupData data) {
@@ -62,7 +69,7 @@ class LoginScreen extends StatelessWidget {
       //navigateBackAfterRecovery: true,
       //onConfirmRecover: _signupConfirm,
       //onConfirmSignup: _signupConfirm,
-      loginProviders: [
+      /*loginProviders: [
         LoginProvider(
           button: Buttons.linkedIn,
           label: 'Sign in with LinkedIn',
@@ -103,7 +110,7 @@ class LoginScreen extends StatelessWidget {
           text: 'Term of services',
           linkUrl: 'https://github.com/NearHuscarl/flutter_login',
         ),
-      ],
+      ], */
       /*additionalSignupFields: [
         const UserFormField(
           keyName: 'Username',
@@ -167,9 +174,9 @@ class LoginScreen extends StatelessWidget {
         return null;
       },
       onLogin: (loginData) {
-        debugPrint('Login info');
-        debugPrint('Name: ${loginData.name}');
-        debugPrint('Password: ${loginData.password}');
+        //debugPrint('Login info');
+        //debugPrint('Name: ${loginData.name}');
+        //debugPrint('Password: ${loginData.password}');
         return _loginUser(loginData);
       },
       onSignup: (signupData) {
@@ -191,7 +198,7 @@ class LoginScreen extends StatelessWidget {
         return _signupUser(signupData);
       },
       onSubmitAnimationCompleted: () {
-        Get.offNamed('/main');
+        Get.offNamed('/');
       },
       onRecoverPassword: (name) {
         debugPrint('Recover password info');
