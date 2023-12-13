@@ -13,37 +13,34 @@ class WordQuestionCategory extends Category {
 Category colorCategory = WordQuestionCategory(
   name: 'Colors',
   description: 'Colors',
-  image: 'https://manolobrides.com/images/2012/11/ColorWheel_OL.jpg',
+  image: 'categoryImages/colorCategoryImage.jpg',
   questions: colorQuestions,
 );
 
 Category animalCategory = WordQuestionCategory(
   name: 'Animals',
   description: 'Animals',
-  image:
-      'https://upload.wikimedia.org/wikipedia/commons/6/6f/Animal_diversity_b.png',
+  image: 'categoryImages/animalCategoryImage.jpg',
   questions: animalQuestions,
 );
 
 Category weatherCategory = WordQuestionCategory(
   name: 'Weather',
   description: 'Weather',
-  image:
-      'https://www.theschoolrun.com/sites/theschoolrun.com/files/weather_.jpg',
+  image: 'categoryImages/weatherCategoryImage.jpg',
   questions: weatherQuestions,
 );
 
 Category foodCategory = WordQuestionCategory(
   name: 'Food',
   description: 'Food',
-  image:
-      'https://honehealth.com/wp-content/uploads/2023/06/high-protein-fast-food-1.webp',
+  image: 'categoryImages/foodCategoryImage.jpg',
   questions: foodQuestions,
 );
 
 Category fruitCategory = WordQuestionCategory(
   name: 'Fruit',
   description: 'Fruit',
-  image: 'https://promova.com/content/list_of_fruits_6f8aa72869.png',
+  image: 'categoryImages/fruitCategoryImage.jpg',
   questions: fruitQuestions,
 );

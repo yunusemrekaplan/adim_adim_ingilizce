@@ -17,12 +17,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final _themeController = Get.put(theme.ControllerTheme());
+  const MyApp({super.key});
+  //final _themeController = Get.put(theme.ControllerTheme());
 
   // This widget is the root of your application.
   @override
