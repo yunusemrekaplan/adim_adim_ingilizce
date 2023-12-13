@@ -2,23 +2,35 @@ import 'package:adim_adim_turkce/view/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/firebase/storage/storage_service.dart';
 import '../../../model/library.dart' as model;
-import '../../widget/library.dart' as widgets;
-import '/view/theme/library.dart' as themes;
 
 import 'constant.dart';
 import 'controller.dart';
 
 class Screen extends StatelessWidget {
   Screen({super.key});
-  final _controller = Get.put(ControllerCategory());
-  final _themeController = Get.find<themes.ControllerTheme>();
+
+  //final _themeController = Get.find<themes.ControllerTheme>();
+  final ControllerCategory _controller = Get.put(ControllerCategory());
+
+  final StorageService _storageService = StorageService();
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
       init: _controller,
-      builder: (_) => buildScaffold(context),
+      builder: (_) => FutureBuilder(
+        future: _storageService.initialize(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return buildScaffold(context);
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
+      dispose: (_) => _controller.unselectCategory(),
     );
   }
 
@@ -108,13 +120,32 @@ class Screen extends StatelessWidget {
           _controller.unselectCategory();
           Get.toNamed('/questions', arguments: category.questions);
         },
-        icon: Image.network(
+        icon: FutureBuilder(
+          future: _storageService.getDownloadURL(path: category.image),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return buildImage(snapshot.data);
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
+        /*Image.network(
           category.image,
           width: widht,
           height: height,
           fit: BoxFit.cover,
-        ),
+        ), */
       ),
+    );
+  }
+
+  Image buildImage(String? data) {
+    return Image.network(
+      data!,
+      width: widht,
+      height: height,
+      fit: BoxFit.cover,
     );
   }
 }

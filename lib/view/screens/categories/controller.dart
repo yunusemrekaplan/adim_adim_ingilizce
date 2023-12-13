@@ -43,6 +43,10 @@ class ControllerCategory extends GetxController {
     // await CategoryService.fetchCategory();
   }
 
+  void isCategorySelectedToggle() {
+    _isCategorySelected.value = !_isCategorySelected.value;
+  }
+
   void selectCategory() {
     _isCategorySelected.value = true;
   }

@@ -20,13 +20,16 @@ class MainScreen extends StatelessWidget {
         body: Obx(() {
           switch (_controller.activeIndex.value) {
             case 0:
-              return categories.Screen();
+              Widget screen = categories.Screen.Screen();
+              return screen;
             case 1:
-              return rank.Screen();
+              Widget screen = rank.Screen();
+              return screen;
             case 2:
-              return dashboard.Screen();
+              Widget screen = dashboard.Screen();
+              return screen;
             default:
-              return Text('Error');
+              return const Text('Error');
           }
         }),
         bottomNavigationBar: Obx(
