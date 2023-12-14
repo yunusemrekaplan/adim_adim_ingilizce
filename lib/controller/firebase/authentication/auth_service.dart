@@ -51,7 +51,7 @@ class AuthService {
       */
     }
 
-    user != null ? Student.student = Student(guid: user.uid) : null;
+    user != null ? Student.student = Student(uid: user.uid) : null;
 
     return user;
   }
