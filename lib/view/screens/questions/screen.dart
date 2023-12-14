@@ -7,14 +7,13 @@ import '../../../view/widget/library.dart' as widgets;
 class Screen extends StatelessWidget {
   Screen({super.key});
 
-  final _controller = Get.put(ControllerQuestions(questions: Get.arguments));
+  final _controller = Get.put(ControllerQuestions(category: Get.arguments));
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
       init: _controller,
       builder: (_) => buildScaffold(context),
-      initState: (_) => _controller.fetchQuestions(),
       id: 'questions',
     );
   }
@@ -22,31 +21,43 @@ class Screen extends StatelessWidget {
   Scaffold buildScaffold(BuildContext context) {
     return Scaffold(
       appBar: widgets.myAppBar(title: 'Questions', context: context),
-      body: Column(
-        children: [
-          SizedBox(height: Get.height * 0.016),
-          Obx(
-            () => _controller.isFinished
-                ? const SizedBox()
-                : Text(
-                    'Score: ${_controller.score}',
-                    style: const TextStyle(fontSize: 24),
-                  ),
-          ),
-          SizedBox(height: Get.height * 0.016),
-          Expanded(
-            child: Obx(
-              () => _controller.isFinished
-                  ? buildFinished()
-                  : buildQuestionAndAnswers(),
-            ),
-          ),
-          Obx(
-            () =>
-                _controller.isFinished ? buildResetButton() : buildNextButton(),
-          ),
-        ],
+      body: FutureBuilder(
+        future: _controller.init(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return buildBody();
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
+    );
+  }
+
+  Widget buildBody() {
+    return Column(
+      children: [
+        SizedBox(height: Get.height * 0.016),
+        Obx(
+          () => _controller.isFinished
+              ? const SizedBox()
+              : Text(
+                  'Score: ${_controller.score}',
+                  style: const TextStyle(fontSize: 24),
+                ),
+        ),
+        SizedBox(height: Get.height * 0.016),
+        Expanded(
+          child: Obx(
+            () => _controller.isFinished
+                ? buildFinished()
+                : buildQuestionAndAnswers(),
+          ),
+        ),
+        Obx(
+          () => _controller.isFinished ? buildResetButton() : buildNextButton(),
+        ),
+      ],
     );
   }
 
@@ -76,7 +87,7 @@ class Screen extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: _controller.question.questionText == ''
+            child: _controller.question.questionType == 'sound'
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

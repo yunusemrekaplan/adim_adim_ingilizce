@@ -55,13 +55,7 @@ class Screen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              List<model.Question> questions =
-                  model.FillInTheBlankQuestion.questions +
-                      model.SoundQuestion.questions;
-              //+ model.WordQuestion.questions;
-              Get.toNamed('/questions', arguments: questions);
-            },
+            onPressed: _controller.onQuestionsTap,
             child: const Text('Questions'),
           ),
         ],

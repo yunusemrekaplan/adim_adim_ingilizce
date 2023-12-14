@@ -1,3 +1,4 @@
+import 'package:adim_adim_ingilizce/model/category/category.dart';
 import 'package:get/get.dart';
 import '../../../controller/firebase/library.dart' as firebase;
 import '../../../model/library.dart' as model;
@@ -39,17 +40,21 @@ class ControllerCategory extends GetxController {
   }
 
   Future<void> onCategoryTap(model.Category category) async {
-    List<model.Question> questions = [];
-    final questionMapList = await _firestoreService.getList(
-      type: firebase.FirestoreServiceType.question,
-    );
-
-    questionMapList.forEach(
-      (element) => questions.add(model.Question.fromMap(element!)),
-    );
-
     unselectCategory();
 
-    Get.toNamed('/questions', arguments: questions);
+    Get.toNamed('/questions', arguments: category);
+  }
+
+  Future<void> onQuestionsTap() async {
+    unselectCategory();
+
+    Get.toNamed(
+      '/questions',
+      arguments: Category(
+        name: 'random',
+        description: 'Random',
+        imagePath: '',
+      ),
+    );
   }
 }

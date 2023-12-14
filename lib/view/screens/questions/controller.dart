@@ -1,13 +1,19 @@
+import 'package:adim_adim_ingilizce/model/category/category.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../model/question/question.dart';
 
-class ControllerQuestions extends GetxController {
-  ControllerQuestions({required this.questions});
+import '../../../controller/firebase/library.dart' as firebase;
 
-  late final List<Question> questions;
+class ControllerQuestions extends GetxController {
+  ControllerQuestions({required this.category});
+
+  final _firestoreService = firebase.FirestoreService();
+
+  late final Category category;
+  List<Question> questions = [];
   final _questionIndex = 0.obs;
   final _correctAnswers = 0.obs;
   final _incorrectAnswers = 0.obs;
@@ -33,9 +39,27 @@ class ControllerQuestions extends GetxController {
   bool get isFinished => _isFinished.value;
   Color getButtonColor(int index) => _buttonColors[index].value;
 
-  void fetchQuestions() async {
+  Future<void> init() async {
+    await fetchQuestions();
     questions.shuffle();
     answersShuffle();
+  }
+
+  Future<void> fetchQuestions() async {
+    final questionMapList = await _firestoreService.getList(
+      type: firebase.FirestoreServiceType.question,
+    );
+    questions.clear();
+
+    if (category.name == 'random') {
+      questions =
+          questionMapList.map((element) => Question.fromMap(element!)).toList();
+    } else {
+      questions = questionMapList
+          .where((element) => category.name == element!['category'])
+          .map((e) => Question.fromMap(e!))
+          .toList();
+    }
   }
 
   void answersShuffle() {
