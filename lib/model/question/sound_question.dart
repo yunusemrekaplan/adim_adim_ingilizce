@@ -7,14 +7,6 @@ class SoundQuestion extends Question {
     required List<Answer> answers,
   }) : super(soundPath: soundPath, answers: answers);
 
-  /*
-  factory SoundQuestion.fromJson(Map<String, dynamic> json) {
-    return SoundQuestion(
-      //question: json['question'],
-      //answer: json['answer'],
-    );
-  }
-  */
   static List<Question> questions = [
     SoundQuestion(
       soundPath: 'sounds/france_capital.mp3',

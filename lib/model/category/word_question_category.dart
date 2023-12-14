@@ -5,10 +5,10 @@ class WordQuestionCategory extends Category {
   WordQuestionCategory({
     required super.name,
     required super.description,
-    required super.image,
-    required super.questions,
+    required super.imagePath,
   });
 }
+/*
 
 Category colorCategory = WordQuestionCategory(
   name: 'Colors',
@@ -44,3 +44,5 @@ Category fruitCategory = WordQuestionCategory(
   image: 'categoryImages/fruitCategoryImage.jpg',
   questions: fruitQuestions,
 );
+
+*/
