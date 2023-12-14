@@ -2,10 +2,11 @@ import '../answer.dart';
 import '../category/category.dart';
 
 class Question {
-  late final int id;
+  late final String uid;
   late final String? questionText;
   late final String? soundPath;
-  late final Category category;
+  late final Category? category;
+  late final String questionType;
   late final List<Answer> answers;
 
   Question({
@@ -13,4 +14,13 @@ class Question {
     this.soundPath,
     required this.answers,
   });
+
+  Question.fromMap(Map<String, dynamic> map) {
+    uid = map['uid'];
+    questionText = map['questionText'] ?? '';
+    soundPath = map['soundPath'] ?? '';
+    //category = Category.fromMap(map['category']);
+    questionType = map['questionType'];
+    answers = map['answers'].map<Answer>((e) => Answer.fromJson(e)).toList();
+  }
 }

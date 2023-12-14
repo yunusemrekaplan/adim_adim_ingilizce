@@ -11,7 +11,7 @@ class Answer {
 
   factory Answer.fromJson(Map<String, dynamic> json) {
     return Answer(
-      answer: json['text'],
+      answer: json['answer'],
       isCorrect: json['isCorrect'],
       isSelected: json['isSelected'],
     );

@@ -1,17 +1,21 @@
-import '../question/question.dart';
-
-abstract class Category {
-  late final int id;
-  late final String guid;
+class Category {
+  //late final int id;
+  late final String uid;
   late final String name;
   late final String description;
-  late final String image;
-  late final List<Question> questions;
+  late final String imagePath;
 
   Category({
     required this.name,
     required this.description,
-    required this.image,
-    required this.questions,
+    required this.imagePath,
   });
+
+  Category.fromMap(Map<String, dynamic> map) {
+    //id = json['id'];
+    uid = map['uid'];
+    name = map['name'];
+    description = map['description'];
+    imagePath = map['imagePath'];
+  }
 }
