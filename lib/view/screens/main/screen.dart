@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
         body: Obx(() {
           switch (_controller.activeIndex.value) {
             case 0:
-              Widget screen = categories.Screen.Screen();
+              Widget screen = categories.Screen();
               return screen;
             case 1:
               Widget screen = rank.Screen();

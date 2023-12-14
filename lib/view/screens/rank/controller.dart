@@ -8,11 +8,13 @@ class ControllerRank extends GetxController {
   List<Student> students = [];
 
   Future<void> getStudents() async {
-    final maps = await _firestoreService.getDocuments();
+    final studentMaps = await _firestoreService.getList(
+      type: FirestoreServiceType.user,
+    );
 
     students = [];
 
-    maps.map((e) => students.add(Student.fromJson(e!))).toList();
+    studentMaps.map((e) => students.add(Student.fromJson(e!))).toList();
 
     students.sort((a, b) => b.totalPoints.compareTo(a.totalPoints));
   }

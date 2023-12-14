@@ -8,11 +8,10 @@ class ControllerDash extends GetxController {
   late Student student;
 
   Future<void> getStudent() async {
-    final doc = await _firestoreService.getDocument(
-      uid: Student.student.guid,
+    final studentMap = await _firestoreService.get(
+      type: FirestoreServiceType.user,
+      uid: Student.student.uid,
     );
-
-    final studentMap = doc!.data();
 
     Student.student.name = studentMap!['name'];
     Student.student.email = studentMap['email'];

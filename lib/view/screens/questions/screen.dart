@@ -76,7 +76,7 @@ class Screen extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: _controller.question.questionText == null
+            child: _controller.question.questionText == ''
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

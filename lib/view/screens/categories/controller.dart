@@ -1,50 +1,33 @@
 import 'package:get/get.dart';
+import '../../../controller/firebase/library.dart' as firebase;
 import '../../../model/library.dart' as model;
 
 class ControllerCategory extends GetxController {
-  /*
-  final _category = <Category>[].obs;
-  final _isLoading = false.obs;
-
-  List<Category> get category => _category.value;
-  bool get isLoading => _isLoading.value;
-
-  @override
-  void onInit() {
-    super.onInit();
-    fetchCategory();
-  }
-
-  void fetchCategory() async {
-    _isLoading.value = true;
-    final category = await CategoryService.fetchCategory();
-    _category.value = category;
-    _isLoading.value = false;
-  }
-  */
+  final _firestoreService = firebase.FirestoreService();
+  final _storageService = firebase.StorageService();
 
   final _isCategorySelected = false.obs;
 
   bool get isCategorySelected => _isCategorySelected.value;
 
-  final categories = <model.Category>[
-    model.colorCategory,
-    model.animalCategory,
-    model.weatherCategory,
-    model.foodCategory,
-    model.fruitCategory,
-    model.colorCategory,
-    model.colorCategory,
-    model.colorCategory,
-    model.colorCategory,
-  ];
+  final categories = <model.Category>[];
 
   Future<void> init() async {
-    // await CategoryService.fetchCategory();
+    await fetchCategory();
+    await _storageService.initialize();
   }
 
-  void isCategorySelectedToggle() {
-    _isCategorySelected.value = !_isCategorySelected.value;
+  Future<void> fetchCategory() async {
+    final categoryMapList = await _firestoreService.getList(
+      type: firebase.FirestoreServiceType.category,
+    );
+    categories.clear();
+
+    categoryMapList.forEach((e) => categories.add(model.Category.fromMap(e!)));
+  }
+
+  Future<String?> getImageUrl(model.Category category) async {
+    return await _storageService.getDownloadURL(path: category.imagePath);
   }
 
   void selectCategory() {
@@ -53,5 +36,20 @@ class ControllerCategory extends GetxController {
 
   void unselectCategory() {
     _isCategorySelected.value = false;
+  }
+
+  Future<void> onCategoryTap(model.Category category) async {
+    List<model.Question> questions = [];
+    final questionMapList = await _firestoreService.getList(
+      type: firebase.FirestoreServiceType.question,
+    );
+
+    questionMapList.forEach(
+      (element) => questions.add(model.Question.fromMap(element!)),
+    );
+
+    unselectCategory();
+
+    Get.toNamed('/questions', arguments: questions);
   }
 }

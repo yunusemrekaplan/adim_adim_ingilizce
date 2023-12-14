@@ -1,10 +1,9 @@
-import 'package:adim_adim_turkce/view/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/firebase/storage/storage_service.dart';
 import '../../../model/library.dart' as model;
 
+import '../../widget/my_app_bar.dart';
 import 'constant.dart';
 import 'controller.dart';
 
@@ -14,22 +13,11 @@ class Screen extends StatelessWidget {
   //final _themeController = Get.find<themes.ControllerTheme>();
   final ControllerCategory _controller = Get.put(ControllerCategory());
 
-  final StorageService _storageService = StorageService();
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
       init: _controller,
-      builder: (_) => FutureBuilder(
-        future: _storageService.initialize(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return buildScaffold(context);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      builder: (_) => buildScaffold(context),
       dispose: (_) => _controller.unselectCategory(),
     );
   }
@@ -39,17 +27,18 @@ class Screen extends StatelessWidget {
       appBar: myAppBar(title: 'Categories', context: context),
       body: Obx(
         () => _controller.isCategorySelected
-            ? buildCategories()
+            ? FutureBuilder(
+                future: _controller.init(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return buildCategories();
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              )
             : buildQuestionButtons(),
       ),
-      //bottomNavigationBar: widgets.MyBottomNavigationBar(),
-      /*
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(),
-        onPressed: _themeController.changeTheme,
-        child: Obx(() => _themeController.modeIcon.value),
-      ), */
     );
   }
 
@@ -116,26 +105,19 @@ class Screen extends StatelessWidget {
     return Padding(
       padding: kPadding,
       child: IconButton(
-        onPressed: () {
-          _controller.unselectCategory();
-          Get.toNamed('/questions', arguments: category.questions);
-        },
+        onPressed: () => _controller.onCategoryTap(category),
         icon: FutureBuilder(
-          future: _storageService.getDownloadURL(path: category.image),
+          future: _controller.getImageUrl(category),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return buildImage(snapshot.data);
+              return _controller.isCategorySelected
+                  ? buildImage(snapshot.data)
+                  : const CircularProgressIndicator();
             } else {
               return const CircularProgressIndicator();
             }
           },
         ),
-        /*Image.network(
-          category.image,
-          width: widht,
-          height: height,
-          fit: BoxFit.cover,
-        ), */
       ),
     );
   }

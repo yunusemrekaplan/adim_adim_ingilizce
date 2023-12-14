@@ -1,10 +1,10 @@
-import 'package:adim_adim_turkce/model/student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_login/flutter_login.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/firebase/authentication/auth_service.dart';
+import '../../../model/student.dart';
 import 'constants.dart';
 
 const mockUsers = {
@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
 
       user == null
           ? result = 'Sign in failed'
-          : Student.student = Student(guid: user.uid);
+          : Student.student = Student(uid: user.uid);
     } on Exception catch (e) {
       print('_loginUser: $e');
     }

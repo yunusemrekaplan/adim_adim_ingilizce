@@ -6,6 +6,7 @@ import '../../../model/question/question.dart';
 
 class ControllerQuestions extends GetxController {
   ControllerQuestions({required this.questions});
+
   late final List<Question> questions;
   final _questionIndex = 0.obs;
   final _correctAnswers = 0.obs;

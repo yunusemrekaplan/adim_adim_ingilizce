@@ -1,10 +1,10 @@
-import 'package:adim_adim_turkce/view/screens/main/screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controller/firebase/firebase_options.dart';
 import 'view/screens/dashboard/library.dart' as dashboard;
 import 'view/screens/categories/library.dart' as categories;
+import 'view/screens/main/screen.dart';
 import 'view/screens/questions/library.dart' as questions;
 import 'view/screens/rank/library.dart' as rank;
 import 'view/screens/auth/library.dart' as auth;
