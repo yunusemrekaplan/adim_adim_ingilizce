@@ -108,7 +108,11 @@ class Screen extends StatelessWidget {
                   ? buildImage(snapshot.data)
                   : const CircularProgressIndicator();
             } else {
-              return const CircularProgressIndicator();
+              return const SizedBox(
+                width: widht,
+                height: height,
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),
