@@ -179,7 +179,8 @@ class LoginScreen extends StatelessWidget {
         //debugPrint('Password: ${loginData.password}');
         return _loginUser(loginData);
       },
-      onSignup: (signupData) {
+      onSignup: null,
+      /*onSignup: (signupData) {
         debugPrint('Signup info');
         debugPrint('Name: ${signupData.name}');
         debugPrint('Password: ${signupData.password}');
@@ -196,7 +197,7 @@ class LoginScreen extends StatelessWidget {
           }
         }
         return _signupUser(signupData);
-      },
+      },*/
       onSubmitAnimationCompleted: () {
         Get.offNamed('/');
       },
