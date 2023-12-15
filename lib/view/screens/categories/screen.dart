@@ -104,9 +104,7 @@ class Screen extends StatelessWidget {
           future: _controller.getImageUrl(category),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return _controller.isCategorySelected
-                  ? buildImage(snapshot.data)
-                  : const CircularProgressIndicator();
+              return buildImage(snapshot.data);
             } else {
               return const SizedBox(
                 width: widht,
@@ -126,6 +124,17 @@ class Screen extends StatelessWidget {
       width: widht,
       height: height,
       fit: BoxFit.cover,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) {
+          return child;
+        } else {
+          return const SizedBox(
+            width: widht,
+            height: height,
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }
