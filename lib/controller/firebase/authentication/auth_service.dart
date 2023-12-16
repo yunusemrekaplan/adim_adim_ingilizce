@@ -1,6 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import '../../../model/student.dart';
 
 class AuthService {
@@ -12,47 +10,72 @@ class AuthService {
 
   AuthService._internal();
 
-  FirebaseAuth? _auth;
-  final FirebaseApp _app = Firebase.app();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> initialize() async {
-    try {
-      _auth = FirebaseAuth.instanceFor(app: _app);
-    } on Exception catch (e) {
-      print('AuthService.initialize: $e');
-      // TODO
-    }
-  }
-
-  //giriş yap fonksiyonu
-  Future<User?> signIn({
+  Future<String?> signIn({
     required String email,
     required String password,
   }) async {
-    User? user;
-
-    if (_auth == null) await initialize();
+    String? result;
 
     try {
-      final userCredential = await _auth!.signInWithEmailAndPassword(
+      final userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      user = userCredential.user;
+      userCredential.user != null
+          ? Student.student = Student(uid: userCredential.user!.uid)
+          : null;
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-email':
+          result = 'The email address is badly formatted.';
+          break;
+        case 'user-disabled':
+          result =
+              'The user corresponding to the given email has been disabled.';
+          break;
+        case 'user-not-found':
+          result = 'No user found for that email.';
+          break;
+        case 'wrong-password':
+          result = 'Wrong password provided for that user.';
+          break;
+        default:
+          result = 'Sign in failed.';
+      }
     } catch (e) {
-      print('AuthService.signIn: $e');
-      /*
-      Log(
-        dateTime: DateTime.now(),
-        state: 'Sign In Error',
-        message: e.toString(),
-      );
-      */
+      result = e.toString();
     }
 
-    user != null ? Student.student = Student(uid: user.uid) : null;
+    return result;
+  }
+  /*
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
+  */
 
-    return user;
+  Future<String?> resetPassword({required String email}) async {
+    String? result;
+
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-email':
+          result = 'The email address is badly formatted.';
+          break;
+        case 'user-not-found':
+          result = 'No user found for that email.';
+          break;
+        default:
+          result = 'Recover password failed.';
+      }
+    } catch (e) {
+      result = e.toString();
+    }
+    return result;
   }
 }

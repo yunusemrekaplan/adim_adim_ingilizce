@@ -4,7 +4,6 @@ import 'package:flutter_login/flutter_login.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/firebase/authentication/auth_service.dart';
-import '../../../model/student.dart';
 import 'constants.dart';
 
 const mockUsers = {
@@ -21,22 +20,10 @@ class LoginScreen extends StatelessWidget {
   Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
 
   Future<String?> _loginUser(LoginData data) async {
-    String? result;
-    try {
-      final user = await _authService.signIn(
-        email: data.name,
-        password: data.password,
-      );
-
-      user == null
-          ? result = 'Sign in failed'
-          : Student.student = Student(uid: user.uid);
-    } on Exception catch (e) {
-      print('_loginUser: $e');
-    }
-    // aa@a.com
-
-    return result;
+    return await _authService.signIn(
+      email: data.name,
+      password: data.password,
+    );
   }
 
   Future<String?> _signupUser(SignupData data) {
@@ -45,13 +32,8 @@ class LoginScreen extends StatelessWidget {
     });
   }
 
-  Future<String?> _recoverPassword(String name) {
-    return Future.delayed(loginTime).then((_) {
-      if (!mockUsers.containsKey(name)) {
-        return 'User not exists';
-      }
-      return null;
-    });
+  Future<String?> _recoverPassword(String name) async {
+    return await _authService.resetPassword(email: name);
   }
 
   Future<String?> _signupConfirm(String error, LoginData data) {
