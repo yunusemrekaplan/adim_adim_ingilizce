@@ -56,7 +56,7 @@ class Screen extends StatelessWidget {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: _controller.onQuestionsTap,
-            child: const Text('Questions'),
+            child: const Text('Random Questions'),
           ),
         ],
       ),
@@ -106,11 +106,7 @@ class Screen extends StatelessWidget {
             if (snapshot.hasData) {
               return buildImage(snapshot.data);
             } else {
-              return const SizedBox(
-                width: widht,
-                height: height,
-                child: CircularProgressIndicator(),
-              );
+              return circularProgressIndicatorBox();
             }
           },
         ),
@@ -128,13 +124,17 @@ class Screen extends StatelessWidget {
         if (loadingProgress == null) {
           return child;
         } else {
-          return const SizedBox(
-            width: widht,
-            height: height,
-            child: CircularProgressIndicator(),
-          );
+          return circularProgressIndicatorBox();
         }
       },
+    );
+  }
+
+  SizedBox circularProgressIndicatorBox() {
+    return const SizedBox(
+      width: widht,
+      height: height,
+      child: CircularProgressIndicator(),
     );
   }
 }

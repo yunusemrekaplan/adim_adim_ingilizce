@@ -49,42 +49,48 @@ class LoginScreen extends StatelessWidget {
     return GetBuilder(
       init: _controller,
       initState: (_) async {
-        bool isSignedIn = await _authService.isSignedIn();
-
-        if (isSignedIn) {
+        if (await _authService.isSignedIn()) {
           Get.offNamed('/');
+        } else {
+          _controller.isLoading = true;
         }
       },
-      builder: (_) => FlutterLogin(
-        title: Constants.appName,
-        userValidator: (value) {
-          if (!value!.contains('@') || !value.endsWith('.com')) {
-            return "Email must contain '@' and end with '.com'";
-          }
-          return null;
-        },
-        passwordValidator: (value) {
-          if (value!.isEmpty) {
-            return 'Password is empty';
-          }
-          return null;
-        },
-        onLogin: (loginData) {
-          //debugPrint('Login info');
-          //debugPrint('Name: ${loginData.name}');
-          //debugPrint('Password: ${loginData.password}');
-          return _loginUser(loginData);
-        },
-        onSignup: null,
-        onSubmitAnimationCompleted: () {
-          Get.offNamed('/');
-        },
-        onRecoverPassword: (name) {
-          debugPrint('Recover password info');
-          debugPrint('Name: $name');
-          return _recoverPassword(name);
-          // Show new password dialog
-        },
+      builder: (_) => Obx(
+        () => _controller.isLoading == false
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : FlutterLogin(
+                title: Constants.appName,
+                userValidator: (value) {
+                  if (!value!.contains('@') || !value.endsWith('.com')) {
+                    return "Email must contain '@' and end with '.com'";
+                  }
+                  return null;
+                },
+                passwordValidator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Password is empty';
+                  }
+                  return null;
+                },
+                onLogin: (loginData) {
+                  //debugPrint('Login info');
+                  //debugPrint('Name: ${loginData.name}');
+                  //debugPrint('Password: ${loginData.password}');
+                  return _loginUser(loginData);
+                },
+                onSignup: null,
+                onSubmitAnimationCompleted: () {
+                  Get.offNamed('/');
+                },
+                onRecoverPassword: (name) {
+                  debugPrint('Recover password info');
+                  debugPrint('Name: $name');
+                  return _recoverPassword(name);
+                  // Show new password dialog
+                },
+              ),
       ),
     );
   }
