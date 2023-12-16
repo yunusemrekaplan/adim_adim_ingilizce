@@ -21,4 +21,8 @@ class Student {
         totalPoints = json['totalPoints'];
 
   static late Student student;
+
+  static void setStudentId(String userId) {
+    Student.student = Student(uid: userId);
+  }
 }

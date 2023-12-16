@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/student.dart';
 
 class AuthService {
@@ -24,9 +25,10 @@ class AuthService {
         password: password,
       );
 
-      userCredential.user != null
-          ? Student.student = Student(uid: userCredential.user!.uid)
-          : null;
+      if (userCredential.user != null) {
+        Student.setStudentId(userCredential.user!.uid);
+        keepUserLoggedIn(userCredential.user!.uid);
+      }
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'invalid-email':
@@ -51,6 +53,18 @@ class AuthService {
 
     return result;
   }
+
+  Future<bool> isSignedIn() async {
+    String? userId = await getLoggedInUser();
+
+    if (userId != null) {
+      Student.setStudentId(userId);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   /*
   Future<void> signOut() async {
     await _auth.signOut();
@@ -77,5 +91,21 @@ class AuthService {
       result = e.toString();
     }
     return result;
+  }
+
+  Future<void> keepUserLoggedIn(String userId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userId', userId);
+  }
+
+  Future<String?> getLoggedInUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString('userId');
+    return userId;
+  }
+
+  Future<void> logoutUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('userId');
   }
 }
