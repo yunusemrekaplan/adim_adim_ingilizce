@@ -1,9 +1,9 @@
-import 'package:adim_adim_ingilizce/model/category/category.dart';
+import 'package:adim_adim_ingilizce/model/category.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../model/question/question.dart';
+import '../../../model/question.dart';
 
 import '../../../controller/firebase/library.dart' as firebase;
 

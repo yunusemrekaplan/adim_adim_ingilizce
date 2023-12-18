@@ -1,4 +1,4 @@
-import 'package:adim_adim_ingilizce/model/category/category.dart';
+import 'package:adim_adim_ingilizce/model/category.dart';
 import 'package:get/get.dart';
 import '../../../controller/firebase/library.dart' as firebase;
 import '../../../model/library.dart' as model;

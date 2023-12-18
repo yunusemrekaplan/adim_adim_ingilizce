@@ -1,18 +1,30 @@
-import '../answer.dart';
-import 'question.dart';
+import 'answer.dart';
 
-class WordQuestion extends Question {
-  WordQuestion({
-    required String question,
-    required List<Answer> answers,
-  }) : super(questionText: question, answers: answers);
+class Question {
+  late final String uid;
+  late final String? questionText;
+  late final String? soundPath;
+  late final String? category;
+  late final String questionType;
+  late final List<Answer> answers;
 
-  static List<Question> questions = colorQuestions +
-      animalQuestions +
-      weatherQuestions +
-      foodQuestions +
-      fruitQuestions;
+  Question({
+    this.questionText,
+    this.soundPath,
+    required this.answers,
+  });
+
+  Question.fromMap(Map<String, dynamic> map) {
+    uid = map['uid'];
+    questionText = map['questionText'] ?? '';
+    soundPath = map['soundPath'] ?? '';
+    category = map['category'] ?? '';
+    questionType = map['questionType'];
+    answers = map['answers'].map<Answer>((e) => Answer.fromJson(e)).toList();
+  }
 }
+
+/*
 
 List<WordQuestion> colorQuestions = <WordQuestion>[
   WordQuestion(
@@ -367,4 +379,5 @@ List<WordQuestion> fruitQuestions = <WordQuestion>[
     answer: 'Gri',
     answers: ['Gri', 'Sarı', 'Turuncu', 'Mavi'],
   ),
+*/
 */
