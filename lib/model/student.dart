@@ -13,12 +13,21 @@ class Student {
   });
 
   Student.fromJson(Map<String, dynamic> json)
-      : uid = json['guid'],
+      : uid = json['uid'],
         name = json['name'],
         email = json['email'],
         phone = json['phone'],
         classNo = json['classNo'],
         totalPoints = json['totalPoints'];
+
+  Map<String, dynamic> toJson() => {
+        'uid': uid,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'classNo': classNo,
+        'totalPoints': totalPoints,
+      };
 
   static late Student student;
 
