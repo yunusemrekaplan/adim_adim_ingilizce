@@ -1,16 +1,25 @@
+import 'package:adim_adim_ingilizce/controller/firebase/firestore/firestore_service.dart';
 import 'package:adim_adim_ingilizce/model/category.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../model/question.dart';
+import '../../health_controller.dart';
+import '../../../model/library.dart';
 
 import '../../../controller/firebase/library.dart' as firebase;
 
 class ControllerQuestions extends GetxController {
-  ControllerQuestions({required this.category});
+  ControllerQuestions({required this.category}) {
+    _isFinished.listen((p0) {
+      if (p0) {
+        updateScore();
+      }
+    });
+  }
 
   final _firestoreService = firebase.FirestoreService();
+  final _healthController = Get.find<ControllerHealth>();
 
   late final Category category;
   List<Question> questions = [];
@@ -34,9 +43,8 @@ class ControllerQuestions extends GetxController {
   int get incorrectAnswers => _incorrectAnswers.value;
   int get score => _score.value;
   bool get isAnswered => _isAnswered.value;
-  bool get isCorrect => _isCorrect.value;
-  bool get isIncorrect => _isIncorrect.value;
   bool get isFinished => _isFinished.value;
+  bool get isAlive => _healthController.lives.value > 0;
   Color getButtonColor(int index) => _buttonColors[index].value;
 
   Future<void> init() async {
@@ -120,10 +128,16 @@ class ControllerQuestions extends GetxController {
     _score.value -= 5;
     _isIncorrect.value = true;
     _isAnswered.value = true;
+    _healthController.decreaseLives();
+
+    if (_healthController.lives.value == 0) {
+      await finish();
+    }
   }
 
-  void finish() {
+  Future<void> finish() async {
     _isFinished.value = true;
+    await updateScore();
   }
 
   Future<void> reset() async {
@@ -154,5 +168,14 @@ class ControllerQuestions extends GetxController {
   Future<void> resetPlayer() async {
     await _player.dispose();
     _player = AudioPlayer();
+  }
+
+  Future<void> updateScore() async {
+    Student.student.totalPoints += score;
+    await _firestoreService.set(
+      type: FirestoreServiceType.user,
+      uid: Student.student.uid,
+      data: Student.student.toJson(),
+    );
   }
 }

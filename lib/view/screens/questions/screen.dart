@@ -15,35 +15,50 @@ class Screen extends StatelessWidget {
       init: _controller,
       builder: (_) => buildScaffold(context),
       id: 'questions',
+      dispose: (_) => _controller.finish(),
     );
   }
 
   Scaffold buildScaffold(BuildContext context) {
     return Scaffold(
-      appBar: widgets.myAppBar(title: 'Questions', context: context),
-      body: FutureBuilder(
-        future: _controller.init(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return buildBody();
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      appBar: widgets.MyAppBar.myAppBar(title: 'Questions', context: context),
+      body: _controller.isAlive ? futureBuilder() : buildDeadScreen(),
+    );
+  }
+
+  FutureBuilder<void> futureBuilder() {
+    return FutureBuilder(
+      future: _controller.init(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return buildBody();
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 
   Widget buildBody() {
+    print(_controller.isFinished);
     return Column(
       children: [
         SizedBox(height: Get.height * 0.016),
         Obx(
           () => _controller.isFinished
               ? const SizedBox()
-              : Text(
-                  'Score: ${_controller.score}',
-                  style: const TextStyle(fontSize: 24),
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'Question: ${_controller.questionIndex + 1} / ${_controller.questions.length}',
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                    Text(
+                      'Score: ${_controller.score}',
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                  ],
                 ),
         ),
         SizedBox(height: Get.height * 0.016),
@@ -58,6 +73,20 @@ class Screen extends StatelessWidget {
           () => _controller.isFinished ? buildResetButton() : buildNextButton(),
         ),
       ],
+    );
+  }
+
+  Widget buildDeadScreen() {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'You have no lives left!',
+            style: TextStyle(fontSize: 24),
+          ),
+        ],
+      ),
     );
   }
 
@@ -189,19 +218,37 @@ class Screen extends StatelessWidget {
 
   Widget buildFinished() {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Finished!',
-            style: TextStyle(fontSize: 24),
-          ),
-          Text(
-            'Score: ${_controller.score}',
-            style: const TextStyle(fontSize: 24),
-          ),
-        ],
-      ),
+      child: _controller.isAlive
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Finished!',
+                  style: TextStyle(fontSize: 24),
+                ),
+                Text(
+                  'Score: ${_controller.score}',
+                  style: const TextStyle(fontSize: 24),
+                ),
+              ],
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Finished!',
+                  style: TextStyle(fontSize: 24),
+                ),
+                const Text(
+                  'You have no lives left!',
+                  style: TextStyle(fontSize: 24),
+                ),
+                Text(
+                  'Score: ${_controller.score}',
+                  style: const TextStyle(fontSize: 24),
+                ),
+              ],
+            ),
     );
   }
 
@@ -209,7 +256,7 @@ class Screen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
-        onPressed: _controller.reset,
+        onPressed: _controller.isAlive ? _controller.reset : null,
         child: const Text('Reset'),
       ),
     );

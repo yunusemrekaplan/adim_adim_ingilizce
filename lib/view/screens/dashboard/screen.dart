@@ -10,7 +10,7 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: widgets.myAppBar(title: 'Dashboard', context: context),
+      appBar: widgets.MyAppBar.myAppBar(title: 'Dashboard', context: context),
       body: FutureBuilder<void>(
         future: _controller.getStudent(),
         builder: builder,
