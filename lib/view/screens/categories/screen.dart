@@ -24,7 +24,7 @@ class Screen extends StatelessWidget {
 
   Scaffold buildScaffold(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(title: 'Categories', context: context),
+      appBar: MyAppBar.myAppBar(title: 'Categories', context: context),
       body: Obx(
         () => _controller.isCategorySelected
             ? FutureBuilder(
